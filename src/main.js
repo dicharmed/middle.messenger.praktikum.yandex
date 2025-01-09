@@ -1,4 +1,4 @@
-import Handlebars from 'handlebars';
+import Handlebars from 'handlebars'
 import './style.css'
 import { setupCounter } from './counter.js'
 
@@ -10,9 +10,8 @@ const test = `
         </div>
 </div>`
 
-
 const template = Handlebars.compile(test)
-const filled = template({title: "Hello!"})
+const filled = template({ title: 'Hello!' })
 
 document.querySelector('#app').innerHTML = filled
 
