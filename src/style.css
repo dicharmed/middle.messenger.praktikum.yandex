@@ -1,0 +1,38 @@
+@import 'normalize.css';
+
+:root {
+  --primary-color: rgba(51, 105, 243, 1);
+  --text-primary-color: rgba(30, 30, 30, 1);
+  --text-secondary-color: rgba(153, 153, 153, 1);
+  --error-color: rgba(255, 47, 47, 1);
+  --light-grey: rgba(239, 239, 239, 1);
+  --light-blue: rgba(228, 237, 253, 1);
+  --bg-seconddary-color: rgba(251, 251, 251, 1);
+  --form-shadow: drop-shadow(0 0 6mm rgba(0, 0, 0, 0.14));
+  --form-border-radius: 12px;
+  --svg-filter-primary-color: invert(42%) sepia(93%) saturate(4401%) hue-rotate(215deg) brightness(97%) contrast(96%);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h2, h3 {
+  margin: 0;
+}
+
+input {
+  appearance: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}

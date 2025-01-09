@@ -1,0 +1,28 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{js,jsx}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "postcss-color-hex-alpha": "^10.0.0",
+    "postcss-custom-properties": "^14.0.4",
+    "prettier": "^3.4.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "normalize.css": "^8.0.1",
+    "postcss-scss": "^4.0.9"
+  }
+}

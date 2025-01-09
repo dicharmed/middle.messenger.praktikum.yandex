@@ -1,0 +1,7 @@
+.profile-page-form-edit-layout .form-button{
+    max-width: 280px;
+    margin-left: 50%;
+    margin-top: 60px;
+    transform: translateX(-50%);
+    text-align: center;
+}

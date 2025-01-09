@@ -1,0 +1,10 @@
+{{#> ProfilePageLayout}}
+    {{> ProfilePageAvatarUpload}}
+
+    {{#> ProfileFormEditLayout btnTitle="Сохранить"}}
+      {{#*inline "profilePageFormEdit"}}
+        {{> ProfileFormDetails}}
+      {{/inline}}
+    {{/ProfileFormEditLayout}}
+
+{{/ProfilePageLayout}}
