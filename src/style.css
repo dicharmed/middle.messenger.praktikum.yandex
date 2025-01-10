@@ -3,6 +3,7 @@
 :root {
   --primary-color: rgba(51, 105, 243, 1);
   --text-secondary-color: rgba(153, 153, 153, 1);
+  --error-color: rgba(255, 47, 47, 1);
 }
 
 body {

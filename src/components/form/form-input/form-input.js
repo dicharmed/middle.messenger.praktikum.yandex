@@ -2,12 +2,12 @@ import Handlebars from 'handlebars'
 import './form-input.css'
 
 export const FormInput = `
-<div class="field">
-    <div class="input-data">
-        <input name={{name}} type={{type}} required>
-            <div class="underline"></div>
-            <label>{{title}}</label>
-    </div>
+<div class="input">
+        <input class="input__value" name={{name}} type={{type}} required>
+        <label class="input__label">{{title}}</label>
+        {{#if error}}
+        <div class="input__message">{{error.message}}</div>
+        {{/if}}
 </div>
 `
 Handlebars.registerPartial('formInput', FormInput)

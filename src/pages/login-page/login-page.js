@@ -1,4 +1,3 @@
-import './login-page.css'
 import { FormInput } from '../../components/form/form-input/form-input.js'
 import { FormButton } from '../../components/form/form-button/form-button.js'
 import { FormLink } from '../../components/form/form-link/form-link.js'
@@ -13,10 +12,9 @@ Handlebars.registerPartial('loginContent', loginContent)
 Handlebars.registerPartial('loginActions', loginActions)
 
 export const loginPage = `
-    <div class="auth-page">
             {{#> formElement title="Вход" user=true}}
                 {{> loginContent}}
                 {{> loginActions}}      
             {{/ formElement }}
-    </div>
 `
+Handlebars.registerPartial('loginPage', loginPage)

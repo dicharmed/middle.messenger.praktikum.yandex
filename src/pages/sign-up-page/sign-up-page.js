@@ -2,7 +2,6 @@ import { FormInput } from '../../components/form/form-input/form-input.js'
 import { FormButton } from '../../components/form/form-button/form-button.js'
 import { FormLink } from '../../components/form/form-link/form-link.js'
 import { FormElement } from '../../components/form/form.js'
-import './sign-up-page.css'
 import Handlebars from 'handlebars'
 
 const signUpContent = `
@@ -20,10 +19,9 @@ Handlebars.registerPartial('signUpContent', signUpContent)
 Handlebars.registerPartial('signUpActions', signUpActions)
 
 export const signUpPage = `
-    <div class="sign-up-page">
             {{#> formElement title="Регистрация" user=false}}
                 {{> signUpContent}}
                 {{> signUpActions}}      
             {{/ formElement }}
-    </div>
 `
+Handlebars.registerPartial('signUpPage', signUpPage)

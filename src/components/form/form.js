@@ -11,7 +11,7 @@ export const FormElement = `
             {{> signUpContent}}
         {{/if}}
     </div>
-    <<div class="form-actions">
+    <div class="form-actions">
         {{#if true}}
             {{> loginActions}}
         {{else}}
