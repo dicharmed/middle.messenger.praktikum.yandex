@@ -1,6 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --primary-color: rgba(51, 105, 243, 1);
+  --text-secondary-color: rgba(153, 153, 153, 1);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
