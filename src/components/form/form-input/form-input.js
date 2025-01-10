@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars'
 import './form-input.css'
 
-export const formInput = `
+export const FormInput = `
 <div class="field">
     <div class="input-data">
         <input name={{name}} type={{type}} required>
@@ -10,4 +10,4 @@ export const formInput = `
     </div>
 </div>
 `
-Handlebars.registerPartial('formInput', formInput)
+Handlebars.registerPartial('formInput', FormInput)

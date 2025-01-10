@@ -1,0 +1,8 @@
+.button {
+    height: 37px;
+    border-radius: 8px;
+    color: white;
+    background: var(--primary-color);
+    font-size: 13px;
+    line-height: 13px;
+}

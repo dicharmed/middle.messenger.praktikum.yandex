@@ -1,7 +1,8 @@
 import Handlebars from 'handlebars'
 import './style.css'
 import { setupCounter } from './counter.js'
-import { login } from './pages/home-page/modules/login.js'
+import { loginPage } from './pages/login-page/login-page.js'
+import { signUpPage } from './pages/sign-up-page/sign-up-page.js'
 import { errorPage } from './pages/error-page/error-page.js'
 // const test = `
 // <div>
@@ -11,7 +12,7 @@ import { errorPage } from './pages/error-page/error-page.js'
 //         </div>
 // </div>`
 
-const template = Handlebars.compile(login)
+const template = Handlebars.compile(signUpPage)
 const filled = template({ title: 'Hello!' })
 
 document.querySelector('#app').innerHTML = filled
