@@ -4,9 +4,9 @@ import './form-input.css'
 export const formInput = `
 <div class="field">
     <div class="input-data">
-        <input type="text" required>
+        <input name={{name}} type={{type}} required>
             <div class="underline"></div>
-            <label>Логин</label>
+            <label>{{title}}</label>
     </div>
 </div>
 `
