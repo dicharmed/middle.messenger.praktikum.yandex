@@ -1,6 +1,6 @@
 import { signUpPage } from '../sign-up-page/sign-up-page.js'
 import { loginPage } from '../login-page/login-page.js'
-import { DialogPreview } from '../chats-page/components/dialog-preview/dialog-preview.js'
+import { ChatLeftSide } from '../chats-page/components/chat-left-side/chat-left-side.js'
 import './home-page.css'
 
 export const homePage = `
@@ -12,5 +12,5 @@ export const homePage = `
 <!--        {{/if}}-->
 <!--    </div>-->
 
-{{> dialogPreview}}
+{{> chatLeftSide}}
 `

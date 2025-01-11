@@ -15,8 +15,9 @@ export const DialogPreview = `
             <h3 class="dialog-content__sender">You:</h3>
             <h3 class="dialog-content__message">message</h3>
         </div>
-        
+        {{#if amount}}
         <div class="dialog-content__amount">2</div>
+        {{/if}}
     </div>
 
 </div>

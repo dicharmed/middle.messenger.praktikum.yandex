@@ -6,6 +6,8 @@
   --text-secondary-color: rgba(153, 153, 153, 1);
   --error-color: rgba(255, 47, 47, 1);
   --light-grey: rgba(239, 239, 239, 1);
+  --light-blue: rgba(228, 237, 253, 1);
+  --bg-seconddary-color: rgba(251, 251, 251, 1);
 }
 
 body {
