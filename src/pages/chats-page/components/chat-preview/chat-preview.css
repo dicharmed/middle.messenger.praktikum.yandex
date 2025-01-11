@@ -1,4 +1,4 @@
-.dialog {
+.chat {
     position: relative;
     display: grid;
     grid-template-columns: 47px 1fr;
@@ -10,56 +10,56 @@
     background: transparent;
 }
 
-.dialog__avatar {
+.chat__avatar {
     width: 47px;
     height: 47px;
     border-radius: 50%;
     background: var(--light-grey);
 }
-.dialog-content {
+.chat-content {
     position: relative;
     height: 47px;
 }
 
-.dialog-content-top {
+.chat-content-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 6px;
 }
 
-.dialog-content__author {
+.chat-content__author {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary-color);
 }
 
-.dialog-content__time {
+.chat-content__time {
     font-size: 9px;
     font-weight: 500;
     color: var(--text-secondary-color);
 }
 
-.dialog-content-bottom {
+.chat-content-bottom {
     display: flex;
     column-gap: 3px;
 }
 
-.dialog-content__sender, .dialog-content__message {
+.chat-content__sender, .chat-content__message {
     margin: 0;
     font-size: 12px;
     font-weight: 500;
 }
 
-.dialog-content__sender {
+.chat-content__sender {
     color: var(--text-primary-color);
 }
 
-.dialog-content__message {
+.chat-content__message {
     color: var(--text-secondary-color);
 }
 
-.dialog-content__amount {
+.chat-content__amount {
     position: absolute;
     bottom: 0;
     right: 0;

@@ -1,8 +1,8 @@
-.dialogs {
+.chats {
     display: flex;
     flex-direction: column;
     row-gap: 1px;
 }
-.dialogs__item .dialog {
+.chats__item .chat {
     border-top: 1px solid var(--light-grey);
 }
