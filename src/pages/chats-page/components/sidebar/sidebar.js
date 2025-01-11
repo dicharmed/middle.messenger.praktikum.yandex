@@ -5,9 +5,8 @@ import './sidebar.css'
 
 export const Sidebar = `
 <div class="sidebar">
-    <a>Профиль ></a>
+    <a class="sidebar__link">Профиль</a>
     <div class="sidebar__search-field">{{> searchField}}</div>
-  
     {{> dialogsList}}
 </div>
 `
