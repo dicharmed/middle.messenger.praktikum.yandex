@@ -7,9 +7,9 @@
     max-width: 340px;
     height: 100%;
     padding: 50px 30px 30px;
-    border-radius: 12px;
+    border-radius: var(--form-border-radius);
     background: white;
-    filter: drop-shadow(0 0 6mm rgba(0, 0, 0, 0.14));
+    filter: var(--form-shadow);
     text-align: center;
     font-weight: 500;
 }

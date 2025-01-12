@@ -7,7 +7,7 @@ const messagesList = [
     sender: 'you',
     type: 'text',
     message: 'Hi!',
-    status: 'success',
+    status: 'seen',
     time: '12:30'
   },
   {
@@ -18,6 +18,6 @@ const messagesList = [
   }
 ]
 export const ChatWindowContent = `
-<div>{{> chatMessage status='seen'}}</div>
+<div>{{> chatMessage message="Hi! How's it going?" time="12:30"}}</div>
 `
 Handlebars.registerPartial('chatWindowContent', ChatWindowContent)

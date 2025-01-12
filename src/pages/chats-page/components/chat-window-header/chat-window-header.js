@@ -1,5 +1,6 @@
 import './chat-window-header.css'
 import { ButtonIcon } from '../../../../components/button-icon/button-icon.js'
+import { DropDownMenu } from '../../../../components/drop-down-menu/drop-down-menu.js'
 import Handlebars from 'handlebars'
 
 export const ChatWindowHeader = `
@@ -10,7 +11,7 @@ export const ChatWindowHeader = `
     </div>
     
     <div class="chat-header__menu">{{> buttonIcon url="/assets/menu-icon.svg"}}</div>
-    
+    {{> dropDownMenu}}
 </div>
 `
 Handlebars.registerPartial('chatWindowHeader', ChatWindowHeader)

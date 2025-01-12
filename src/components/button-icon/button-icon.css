@@ -14,6 +14,6 @@
     }
 
     &:hover img, &:active img {
-        filter: invert(42%) sepia(93%) saturate(4401%) hue-rotate(215deg) brightness(97%) contrast(96%);
+        filter: var(--svg-filter-primary-color);
     }
 }

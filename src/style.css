@@ -8,6 +8,9 @@
   --light-grey: rgba(239, 239, 239, 1);
   --light-blue: rgba(228, 237, 253, 1);
   --bg-seconddary-color: rgba(251, 251, 251, 1);
+  --form-shadow: drop-shadow(0 0 6mm rgba(0, 0, 0, 0.14));
+  --form-border-radius: 12px;
+  --svg-filter-primary-color: invert(42%) sepia(93%) saturate(4401%) hue-rotate(215deg) brightness(97%) contrast(96%);
 }
 
 body {
