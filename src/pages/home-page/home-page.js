@@ -1,6 +1,7 @@
 import { signUpPage } from '../sign-up-page/sign-up-page.js'
 import { loginPage } from '../login-page/login-page.js'
 import { ChatsPage } from '../chats-page/chats-page.js'
+import { ProfilePage } from '../profile-page/profile-page.js'
 import './home-page.css'
 
 export const homePage = `
@@ -12,5 +13,5 @@ export const homePage = `
 <!--        {{/if}}-->
 <!--    </div>-->
 
-{{> chatsPage}}
+{{> profilePage}}
 `

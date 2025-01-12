@@ -26,8 +26,3 @@
 .chat-header__menu {
     justify-self: end;
 }
-/*.chat-header__menu button:active ~ .drop-down-menu{*/
-
-/*        display: flex;*/
-
-/*}*/

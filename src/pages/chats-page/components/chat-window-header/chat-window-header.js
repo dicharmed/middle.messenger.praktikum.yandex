@@ -3,6 +3,9 @@ import { ButtonIcon } from '../../../../components/button-icon/button-icon.js'
 import { DropDownMenu } from '../../../../components/drop-down-menu/drop-down-menu.js'
 import Handlebars from 'handlebars'
 
+const handleClick = () => {
+  console.log('clicked')
+}
 export const ChatWindowHeader = `
 <div class="chat-header">
     <div class="chat-header-contact">
@@ -11,7 +14,15 @@ export const ChatWindowHeader = `
     </div>
     
     <div class="chat-header__menu">{{> buttonIcon url="/assets/menu-icon.svg"}}</div>
-    {{> dropDownMenu}}
+    
+    <div class="chat-header__drop-down-menu">
+        {{> dropDownMenu}}
+    </div>
+    
 </div>
 `
 Handlebars.registerPartial('chatWindowHeader', ChatWindowHeader)
+
+// document.getElementById('demo').onclick = function () {
+//   handleClick()
+// }
