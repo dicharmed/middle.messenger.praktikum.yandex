@@ -1,0 +1,28 @@
+.chat-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--light-grey);
+}
+.chat-header-contact {
+    display: flex;
+    align-items: center;
+}
+.chat-header__avatar {
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--light-grey);
+}
+.chat-header__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary-color);
+}
+.chat-header__menu {
+    justify-self: end;
+}
