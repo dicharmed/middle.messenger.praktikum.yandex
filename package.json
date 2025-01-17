@@ -24,5 +24,6 @@
     "handlebars": "^4.7.8",
     "normalize.css": "^8.0.1",
     "postcss-scss": "^4.0.9"
-  }
+  },
+  "engines" : { "node" : ">=12" }
 }
