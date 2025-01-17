@@ -5,25 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite build",
+    "start": "vite build && vite preview",
     "preview": "vite preview",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{js,jsx}\""
   },
   "devDependencies": {
-    "@eslint/js": "^8.57.1",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.2",
     "prettier": "^3.4.2",
-    "vite": "^4.5.5"
+    "vite": "^5.4.11"
   },
   "dependencies": {
     "handlebars": "^4.7.8",
     "normalize.css": "^8.0.1",
     "postcss-scss": "^4.0.9"
   },
-  "engines": {
-    "node": ">=16"
+  "engines" : {
+    "node" : ">=20.11.0"
   }
 }
