@@ -1,0 +1,11 @@
+{{#> ProfilePageLayout}}
+    {{> Avatar}}
+
+    {{#> ProfileFormEditLayout btnTitle="Сохранить"}}
+      {{#*inline "profilePageFormEdit"}}
+        {{> ProfileFormField type="password" name="oldPassword" value="12345678" label="Старый пароль"}}
+        {{> ProfileFormField type="password" name="newPassword" value="123456" label="Новый пароль"}}
+        {{> ProfileFormField type="password" name="newPasswordControl" value="123456" label="Повторите новый пароль"}}
+      {{/inline}}
+    {{/ProfileFormEditLayout}}
+{{/ProfilePageLayout}}

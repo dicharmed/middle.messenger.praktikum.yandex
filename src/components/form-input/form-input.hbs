@@ -1,0 +1,7 @@
+<div class='input'>
+  <input class='input__value' name={{name}} type={{type}} required />
+  <label class='input__label'>{{title}}</label>
+  {{#if error}}
+    <div class='input__message'>{{error.message}}</div>
+  {{/if}}
+</div>

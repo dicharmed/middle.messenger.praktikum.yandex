@@ -1,0 +1,16 @@
+<div class='chat-message {{#if outcoming}}chat-message_outcoming{{else}}chat-message_incoming{{/if}}'>
+  <div class='chat-message__text'>{{message}}</div>
+  <div class='chat-message-info'>
+    {{#if status}}
+      <img
+        class='chat-message__status'
+        src='/assets/msg-status-seen.svg'
+        alt='status'
+      />
+    {{/if}}
+    <div class='chat-message__time {{#if outcoming}}chat-message__time_outcoming{{else}}chat-message__time_incoming{{/if}}'>{{time}}</div>
+  </div>
+</div>
+
+
+

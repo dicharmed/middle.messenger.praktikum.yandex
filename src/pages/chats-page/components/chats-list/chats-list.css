@@ -1,0 +1,11 @@
+.chats {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1px;
+}
+.chats__item .chat {
+    border-top: 1px solid var(--light-grey);
+}
+.chats__item:last-child {
+    border-bottom: 1px solid var(--light-grey);
+}

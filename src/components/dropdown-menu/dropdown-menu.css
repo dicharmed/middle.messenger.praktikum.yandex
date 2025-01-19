@@ -1,0 +1,29 @@
+.dropdown-menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    justify-content: center;
+    padding: 15px;
+    border-radius: var(--form-border-radius);
+    background: white;
+    filter: var(--form-shadow);
+}
+.dropdown-menu-item {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    border: none;
+    background: none;
+}
+.dropdown-menu-item__icon {
+    width: 22px;
+    height: 22px;
+    filter: var(--svg-filter-primary-color);
+}
+.dropdown-menu-item__text {
+    font-size: 12px;
+    font-weight: 500;
+    text-wrap-mode: nowrap;
+}
