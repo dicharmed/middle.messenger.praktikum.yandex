@@ -1,6 +1,7 @@
-import * as pages from '../pages/index.js'
+import * as pages from '../pages'
+import { Route } from '../types/route.ts'
 
-export const routes = [
+export const routes: Route[] = [
   {
     path: '/',
     component: pages.HomePage

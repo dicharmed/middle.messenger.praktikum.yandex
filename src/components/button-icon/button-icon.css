@@ -1,19 +1,21 @@
 .button-icon {
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-    cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
 
-    &:hover, &:active {
-        border-radius: 50%;
-        background: var(--light-grey);
-    }
+  &:hover,
+  &:active {
+    border-radius: 50%;
+    background: var(--light-grey);
+  }
 
-    &:hover img, &:active img {
-        filter: var(--svg-filter-primary-color);
-    }
+  &:hover img,
+  &:active img {
+    filter: var(--svg-filter-primary-color);
+  }
 }

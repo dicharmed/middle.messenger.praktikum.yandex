@@ -1,11 +1,12 @@
 import { render } from './render'
+import { Route } from '../types/route.ts'
 
-export function registerRouter(config) {
+export function registerRouter(config: Route[]): void {
   function goTo(path = '/') {
     const page = config.find(page => page.path === path)
 
     if (page) {
-      window.history.pushState(null, null, page.path)
+      window.history.pushState(null, '', page.path)
       render(page.component)
     } else {
       const errorPage = config.find(page => page.path === '*')
@@ -18,17 +19,23 @@ export function registerRouter(config) {
     }
   }
 
-  function handleNavigate(e) {
-    if (e.target.classList.contains('js-nav-link')) {
+  function handleNavigate(e: MouseEvent) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    if (e.target && e.target.classList.contains('js-nav-link')) {
       e.preventDefault()
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       const path = e.target.getAttribute('href')
       goTo(path)
     }
   }
 
-  function handlePopState(e) {
+  function handlePopState(e: PopStateEvent) {
     e.preventDefault()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     goTo(e.target.location.pathname)
   }
 

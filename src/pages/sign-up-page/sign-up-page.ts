@@ -1,6 +1,6 @@
 import { default as SignUpPageActions } from './components/sign-up-page-actions.hbs?raw'
 import { default as SignUpPageContent } from './components/sign-up-page-content.hbs?raw'
-import { registerTemplate } from '../../utils/register-template.js'
+import { registerTemplate } from '../../utils/register-template.ts'
 import './sign-up-page.css'
 
 registerTemplate({ SignUpPageActions, SignUpPageContent })

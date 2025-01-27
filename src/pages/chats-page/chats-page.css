@@ -1,18 +1,19 @@
 .chats-page {
-    display: grid;
-    grid-template-columns: 310px 1fr;
-    grid-column-gap: 10px;
-    width: 100%;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  grid-column-gap: 10px;
+  width: 100%;
+  height: 100vh;
 }
 
 .chats-page-left {
-    width: 100%;
-    height: 100%;
-    max-width: 310px;
-    border-right: 1px solid var(--light-grey);
-    background-color: var(--bg-seconddary-color);
+  width: 100%;
+  height: 100%;
+  max-width: 310px;
+  border-right: 1px solid var(--light-grey);
+  background-color: var(--bg-seconddary-color);
 }
+
 .chats-page-right {
-    padding: 10px 20px 11px;
+  padding: 10px 20px 11px;
 }
