@@ -1,4 +1,4 @@
-import { CallbackType, EventType } from '../../types/types.ts'
+import { CallbackType, EventType } from '../types/types.ts'
 
 class EventBus {
   listeners: EventType = {}

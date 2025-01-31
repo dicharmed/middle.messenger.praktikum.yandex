@@ -34,10 +34,11 @@
   },
   "dependencies": {
     "handlebars": "^4.7.8",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "uuid": "^11.0.5"
+  },
+  "lint-staged": {
+    "*.ts": "lint:typecheck && lint:ts",
+    "*.css": "lint:css"
   }
-//  "lint-staged": {
-//    "*.ts": "lint:typecheck && lint:ts",
-//    "*.css": "lint:css"
-//  }
 }

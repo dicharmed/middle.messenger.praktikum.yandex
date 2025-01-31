@@ -1,16 +1,13 @@
-import Block from '../../core/block/block.ts'
+import Block from '../../services/block.ts'
 import { PropsType } from '../../types/types.ts'
-import { compile } from '../../utils/compile.ts'
-import { default as template } from './test-componnet.hbs?raw'
-import { registerTemplate } from '../../utils/register-template.ts'
+import { default as TestComponentTemplate } from './test-component.hbs?raw'
 
-export default class TestComponent extends Block {
+export default class TestComponentClass extends Block {
   constructor(props: PropsType) {
-    super({ ...props, tagName: 'div' })
+    super({ ...props })
   }
 
   render() {
-    registerTemplate({ template })
-    return compile(template, this.props)
+    return this.compile(TestComponentTemplate, this.props)
   }
 }
