@@ -6,8 +6,20 @@ import TestComponentClass from '../../components/test-component/test-component.t
 
 class TestPageClass extends Block {
   constructor(props: PropsType) {
-    super({ ...props })
+    super(props)
+
+    if (!this.children.testComponent) {
+      this.children.testComponent = new TestComponentClass({
+        text: 'hello',
+        events: {
+          click: event => {
+            console.log('from test page click', event)
+          }
+        }
+      })
+    }
   }
+
   render() {
     return this.compile(TestPageTemplate, this.props)
   }
@@ -16,13 +28,9 @@ class TestPageClass extends Block {
 export const TestPage = new TestPageClass({
   className: 'test-page',
   text: 'TestPage',
-  withInternalID: true,
-  testComponent: new TestComponentClass({
-    text: 'hellllo',
-    events: {
-      click: event => {
-        console.log('from test page click', event)
-      }
-    }
-  })
+  withInternalID: true
 })
+
+setTimeout(() => {
+  TestPage.children.testComponent.setProps({ text: 'works' })
+}, 3000)

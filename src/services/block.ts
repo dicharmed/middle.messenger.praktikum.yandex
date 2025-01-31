@@ -19,30 +19,30 @@ interface BlockEvents {
 }
 
 abstract class Block {
-  static EVENTS = EventsEnum
+  private static EVENTS = EventsEnum
   props: PropsType
-  eventBus: () => EventBus<BlockEvents>
-  _element: HTMLElement | null = null
-  _id: string | null = null
   children: ChildrenType
-  _lists: ListsType = {}
+  private _eventBus: EventBus<BlockEvents>
+  // private _lists: ListsType = {}
+  private _element: HTMLElement | null = null
+  private _id: string | null = null
 
   protected constructor(propsAndChildren: PropsType) {
-    const eventBus = new EventBus<BlockEvents>()
-    const { children, props, lists } = this._getChildren(propsAndChildren)
+    const { children, props } = this._getChildren(propsAndChildren)
     const isWithInternalID = props.withInternalID || false
+    this._eventBus = new EventBus<BlockEvents>()
     this._id = makeUUID()
     this.children = this._makePropsProxy(children, this) as ChildrenType
-    this._lists = this._makePropsProxy(lists, this) as ListsType
+    // this._lists = this._makePropsProxy(lists, this) as ListsType
     this.props = this._makePropsProxy(
       { ...props, __id: isWithInternalID ? this._id : null },
       this
     )
-    this.eventBus = () => eventBus
-    this._registerEvents(eventBus)
-    eventBus.emit(Block.EVENTS.INIT)
+    this._registerEvents(this._eventBus)
+
+    this._eventBus.emit(Block.EVENTS.INIT)
   }
-  _registerEvents(eventBus: EventBus<BlockEvents>) {
+  private _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(EventsEnum.FLOW_CDU, (oldProps, newProps) =>
@@ -50,7 +50,7 @@ abstract class Block {
     )
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
-  _createResources() {
+  private _createResources() {
     const { tagName, className, withInternalID } = this.props
     this._element = this._createDocumentElement(
       tagName,
@@ -59,27 +59,27 @@ abstract class Block {
     )
   }
 
-  init() {
+  private init() {
     this._createResources()
 
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+    this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props
 
     Object.keys(events).forEach(eventName => {
       this._element!.addEventListener(eventName, events[eventName])
     })
   }
-  _removeEvents() {
+  private _removeEvents() {
     const { events = {} } = this.props
 
     Object.keys(events).forEach(eventName => {
       this._element!.removeEventListener(eventName, events[eventName])
     })
   }
-  _getChildren(propsAndChildren: PropsType) {
+  private _getChildren(propsAndChildren: PropsType) {
     const children: ChildrenType = {}
     const lists: ListsType = {}
     const props: PropsType = {}
@@ -96,7 +96,6 @@ abstract class Block {
         props[key] = value
       }
     })
-
     return { children, lists, props }
   }
 
@@ -125,7 +124,7 @@ abstract class Block {
     return fragment.content
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount()
 
     Object.values(this.children).forEach(child => {
@@ -136,15 +135,15 @@ abstract class Block {
   componentDidMount() {}
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+    this._eventBus.emit(Block.EVENTS.FLOW_CDM)
   }
 
-  _componentDidUpdate(oldProps: PropsType, newProps: PropsType) {
+  private _componentDidUpdate(oldProps: PropsType, newProps: PropsType) {
     const response = this.componentDidUpdate(oldProps, newProps)
     if (!response) {
       return
     }
-    this._render()
+    this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -155,7 +154,6 @@ abstract class Block {
     if (!nextProps) {
       return
     }
-
     Object.assign(this.props, nextProps)
   }
 
@@ -163,7 +161,7 @@ abstract class Block {
     return this._element
   }
 
-  _render() {
+  private _render() {
     const block = this.render()
     this._removeEvents()
     this._element!.innerHTML = ''
@@ -184,7 +182,10 @@ abstract class Block {
   }
 
   // Добавляем этот ID в актуальные this.props компонента, чтобы можно было получить доступ к id везде
-  _makePropsProxy(props: PropsType | ChildrenType | ListsType, context: Block) {
+  private _makePropsProxy(
+    props: PropsType | ChildrenType | ListsType,
+    context: Block
+  ) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as keyof PropsType]
@@ -194,7 +195,7 @@ abstract class Block {
         target[prop as keyof PropsType] = value
 
         // Запускаем обновление компоненты
-        context.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
+        context._eventBus.emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
         return true
       },
       deleteProperty() {
@@ -203,7 +204,7 @@ abstract class Block {
     })
   }
 
-  _createDocumentElement(
+  private _createDocumentElement(
     tagName: TagNameType = 'div',
     className?: string,
     withInternalID?: boolean
