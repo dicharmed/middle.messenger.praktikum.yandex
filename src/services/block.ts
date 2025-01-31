@@ -24,7 +24,7 @@ abstract class Block {
   eventBus: () => EventBus<BlockEvents>
   _element: HTMLElement | null = null
   _id: string | null = null
-  _children: ChildrenType
+  children: ChildrenType
   _lists: ListsType = {}
 
   protected constructor(propsAndChildren: PropsType) {
@@ -32,7 +32,7 @@ abstract class Block {
     const { children, props, lists } = this._getChildren(propsAndChildren)
     const isWithInternalID = props.withInternalID || false
     this._id = makeUUID()
-    this._children = this._makePropsProxy(children, this) as ChildrenType
+    this.children = this._makePropsProxy(children, this) as ChildrenType
     this._lists = this._makePropsProxy(lists, this) as ListsType
     this.props = this._makePropsProxy(
       { ...props, __id: isWithInternalID ? this._id : null },
@@ -103,7 +103,7 @@ abstract class Block {
   compile(template: string, props: PropsType) {
     const propsAndStubs = { ...props }
 
-    Object.entries(this._children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = new Handlebars.SafeString(
         `<div data-id="${child._id}"></div>`
       )
@@ -115,7 +115,7 @@ abstract class Block {
 
     fragment.innerHTML = templateCompile(template, propsAndStubs)
 
-    Object.values(this._children).forEach(child => {
+    Object.values(this.children).forEach(child => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`)
       const content = child.getContent()
 
@@ -128,7 +128,7 @@ abstract class Block {
   _componentDidMount() {
     this.componentDidMount()
 
-    Object.values(this._children).forEach(child => {
+    Object.values(this.children).forEach(child => {
       child.dispatchComponentDidMount()
     })
   }
