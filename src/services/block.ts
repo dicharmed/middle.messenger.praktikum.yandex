@@ -8,43 +8,55 @@ import {
 import { v4 as makeUUID } from 'uuid'
 import { templateCompile } from '../utils/template-compile.ts'
 import Handlebars from 'handlebars'
+import { EVENTS as EventsEnum } from '../constants/constants.ts'
+
+interface BlockEvents {
+  [key: string]: (...args: unknown[]) => void
+  [EventsEnum.INIT]: () => void
+  [EventsEnum.FLOW_CDM]: () => void
+  [EventsEnum.FLOW_CDU]: (...args: Array<unknown>) => void
+  [EventsEnum.FLOW_RENDER]: () => void
+}
+
 abstract class Block {
-  static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render'
-  }
+  static EVENTS = EventsEnum
   props: PropsType
-  eventBus: () => EventBus
+  eventBus: () => EventBus<BlockEvents>
   _element: HTMLElement | null = null
-  _id: string
+  _id: string | null = null
   _children: ChildrenType
   _lists: ListsType = {}
 
   protected constructor(propsAndChildren: PropsType) {
-    const eventBus = new EventBus()
+    const eventBus = new EventBus<BlockEvents>()
     const { children, props, lists } = this._getChildren(propsAndChildren)
-
+    const isWithInternalID = props.withInternalID || false
     this._id = makeUUID()
     this._children = this._makePropsProxy(children, this) as ChildrenType
     this._lists = this._makePropsProxy(lists, this) as ListsType
-    this.props = this._makePropsProxy({ ...props, __id: this._id }, this)
-
+    this.props = this._makePropsProxy(
+      { ...props, __id: isWithInternalID ? this._id : null },
+      this
+    )
     this.eventBus = () => eventBus
-
     this._registerEvents(eventBus)
     eventBus.emit(Block.EVENTS.INIT)
   }
-  _registerEvents(eventBus: EventBus) {
+  _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+    eventBus.on(EventsEnum.FLOW_CDU, (oldProps, newProps) =>
+      this._componentDidUpdate(oldProps as PropsType, newProps as PropsType)
+    )
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
   _createResources() {
-    const { tagName, className } = this.props
-    this._element = this._createDocumentElement(tagName, className)
+    const { tagName, className, withInternalID } = this.props
+    this._element = this._createDocumentElement(
+      tagName,
+      className,
+      withInternalID
+    )
   }
 
   init() {
@@ -53,6 +65,20 @@ abstract class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
 
+  _addEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach(eventName => {
+      this._element!.addEventListener(eventName, events[eventName])
+    })
+  }
+  _removeEvents() {
+    const { events = {} } = this.props
+
+    Object.keys(events).forEach(eventName => {
+      this._element!.removeEventListener(eventName, events[eventName])
+    })
+  }
   _getChildren(propsAndChildren: PropsType) {
     const children: ChildrenType = {}
     const lists: ListsType = {}
@@ -113,7 +139,7 @@ abstract class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  _componentDidUpdate(oldProps: unknown, newProps: unknown) {
+  _componentDidUpdate(oldProps: PropsType, newProps: PropsType) {
     const response = this.componentDidUpdate(oldProps, newProps)
     if (!response) {
       return
@@ -121,10 +147,11 @@ abstract class Block {
     this._render()
   }
 
-  componentDidUpdate(_oldProps: unknown, _newProps: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  componentDidUpdate(_oldProps: PropsType, _newProps: PropsType) {
     return true
   }
-  setProps = (nextProps: unknown) => {
+  setProps = (nextProps: PropsType) => {
     if (!nextProps) {
       return
     }
@@ -138,12 +165,14 @@ abstract class Block {
 
   _render() {
     const block = this.render()
-
+    this._removeEvents()
     this._element!.innerHTML = ''
 
     if (block instanceof Node) {
       this._element!.appendChild(block)
     }
+
+    this._addEvents()
   }
 
   render(): string | DocumentFragment {
@@ -174,11 +203,15 @@ abstract class Block {
     })
   }
 
-  _createDocumentElement(tagName: TagNameType = 'div', className?: string) {
+  _createDocumentElement(
+    tagName: TagNameType = 'div',
+    className?: string,
+    withInternalID?: boolean
+  ) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName)
     if (className) element.setAttribute('class', className)
-    element.setAttribute('data-id', this._id)
+    if (withInternalID && this._id) element.setAttribute('data-id', this._id)
 
     return element
   }

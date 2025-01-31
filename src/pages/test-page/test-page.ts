@@ -8,6 +8,13 @@ class TestPageClass extends Block {
   constructor(props: PropsType) {
     super({ ...props })
   }
+  componentDidUpdate(oldProps: PropsType, newProps: PropsType) {
+    if (oldProps.child !== newProps.child) {
+      this._children.testComponent.setProps({ child: newProps.child })
+    }
+
+    return true
+  }
   render() {
     return this.compile(TestPageTemplate, this.props)
   }
@@ -15,5 +22,14 @@ class TestPageClass extends Block {
 
 export const TestPage = new TestPageClass({
   className: 'test-page',
-  testComponent: new TestComponentClass({ child: 'hellllo' })
+  text: 'TestPage',
+  withInternalID: true,
+  testComponent: new TestComponentClass({
+    child: 'hellllo',
+    events: {
+      click: event => {
+        console.log('from test page click', event)
+      }
+    }
+  })
 })

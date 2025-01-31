@@ -1,35 +1,37 @@
-import { CallbackType, EventType } from '../types/types.ts'
-
-class EventBus {
-  listeners: EventType = {}
+class EventBus<
+  TEvents extends Record<string, (...args: Array<unknown>) => void>
+> {
+  private listeners: Partial<{ [K in keyof TEvents]: Array<TEvents[K]> }> = {}
 
   constructor() {
     this.listeners = {}
   }
 
-  _checkEvent(event: string) {
-    if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`)
+  private _checkEvent<K extends keyof TEvents>(event: K) {
+    if (!this.listeners[event] || this.listeners[event]!.length === 0) {
+      throw new Error(`Нет события: ${String(event)}`)
     }
   }
 
-  on(event: string, callback: CallbackType) {
+  on<K extends keyof TEvents>(event: K, callback: TEvents[K]) {
     if (!this.listeners[event]) {
       this.listeners[event] = []
     }
-    this.listeners[event].push(callback)
+    this.listeners[event]!.push(callback)
   }
-  off(event: string, callback: CallbackType) {
+
+  off<K extends keyof TEvents>(event: K, callback: TEvents[K]) {
     this._checkEvent(event)
 
-    this.listeners[event] = this.listeners[event].filter(
-      (listener: CallbackType) => listener !== callback
+    this.listeners[event] = this.listeners[event]!.filter(
+      listener => listener !== callback
     )
   }
-  emit(event: string, ...args: Array<unknown>) {
+
+  emit<K extends keyof TEvents>(event: K, ...args: Parameters<TEvents[K]>) {
     this._checkEvent(event)
 
-    this.listeners[event].forEach((listener: CallbackType) => listener(...args))
+    this.listeners[event]!.forEach(listener => listener(...args))
   }
 }
 

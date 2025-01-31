@@ -4,7 +4,7 @@ import { default as TestComponentTemplate } from './test-component.hbs?raw'
 
 export default class TestComponentClass extends Block {
   constructor(props: PropsType) {
-    super({ ...props })
+    super({ ...props, tagName: 'button' })
   }
 
   render() {
