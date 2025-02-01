@@ -26,8 +26,10 @@ class TestPageClass extends Block {
 }
 
 export const TestPage = new TestPageClass({
-  className: 'test-page',
   text: 'TestPage',
+  attributes: {
+    class: ['test-page', 'test-page-2']
+  },
   withInternalID: true
 })
 

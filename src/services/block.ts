@@ -51,12 +51,8 @@ abstract class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
   private _createResources() {
-    const { tagName, className, withInternalID } = this.props
-    this._element = this._createDocumentElement(
-      tagName,
-      className,
-      withInternalID
-    )
+    const { tagName, withInternalID } = this.props
+    this._element = this._createDocumentElement(tagName, withInternalID)
   }
 
   private init() {
@@ -65,6 +61,18 @@ abstract class Block {
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER)
   }
 
+  private _addAttributes() {
+    const { attributes = {} } = this.props
+    Object.entries(attributes).forEach(([key, value]) => {
+      if (value) {
+        if (Array.isArray(value)) {
+          this._element?.setAttribute(key, value.join(' '))
+        } else {
+          this._element?.setAttribute(key, String(value))
+        }
+      }
+    })
+  }
   private _addEvents() {
     const { events = {} } = this.props
 
@@ -169,7 +177,7 @@ abstract class Block {
     if (block instanceof Node) {
       this._element!.appendChild(block)
     }
-
+    this._addAttributes()
     this._addEvents()
   }
 
@@ -206,12 +214,11 @@ abstract class Block {
 
   private _createDocumentElement(
     tagName: TagNameType = 'div',
-    className?: string,
     withInternalID?: boolean
   ) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName)
-    if (className) element.setAttribute('class', className)
+    // if (className) element.setAttribute('class', className)
     if (withInternalID && this._id) element.setAttribute('data-id', this._id)
 
     return element

@@ -12,7 +12,7 @@
     "lint:css": "stylelint src/**/*.css",
     "format:ts": "prettier --write \"**/*.ts\"",
     "format:css": "stylelint src/**/*.css --fix",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
