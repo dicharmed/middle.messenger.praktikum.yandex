@@ -1,8 +1,10 @@
 import './test-page.css'
 import Block from '../../services/block.ts'
 import { default as TestPageTemplate } from './test-page.hbs?raw'
+import Avatar from '../../components/avatar/avatar.ts'
 import { PropsType } from '../../types/types.ts'
 import TestComponentClass from '../../components/test-component/test-component.ts'
+import { SIZE } from '../../constants/constants.ts'
 
 class TestPageClass extends Block {
   constructor(props: PropsType) {
@@ -17,6 +19,10 @@ class TestPageClass extends Block {
           }
         }
       })
+    }
+
+    if (!this.children.avatar) {
+      this.children.avatar = new Avatar({ size: SIZE.medium })
     }
   }
 

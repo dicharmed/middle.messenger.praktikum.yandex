@@ -4,3 +4,8 @@ export enum EVENTS {
   FLOW_CDU = 'flow:component-did-update',
   FLOW_RENDER = 'flow:render'
 }
+export enum SIZE {
+  small = 'small',
+  medium = 'medium',
+  large = 'large'
+}

@@ -1,7 +1,6 @@
 export { ButtonArrow } from './button-arrow/button-arrow.ts'
 export { ButtonIcon } from './button-icon/button-icon.ts'
 export { DropdownMenu } from './dropdown-menu/dropdown-menu.ts'
-export { Avatar } from './avatar/avatar.ts'
 export { Form } from './form/form.ts'
 export { FormButton } from './form-button/form-button.ts'
 export { FormInput } from './form-input/form-input.ts'

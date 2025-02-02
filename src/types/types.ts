@@ -12,6 +12,7 @@ export type PropsType = Record<string, unknown> & {
 }
 export type ListsType = Record<string, Array<unknown>>
 export type ChildrenType = Record<string, Block>
+export type ClassNamesType = Array<string> | string
 export type HtmlElementAttrsType = Record<string, string | Array<string>> & {
-  class?: string | Array<string>
+  class?: ClassNamesType
 }
