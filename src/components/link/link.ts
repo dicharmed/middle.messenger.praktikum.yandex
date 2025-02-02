@@ -1,21 +1,18 @@
-import './form-button.css'
+import './link.css'
 import Block from '../../services/block.ts'
 import { PropsType } from '../../types/types.ts'
 
 interface Props extends PropsType {
-  name?: string
+  href: string
   title: string
+  className: string
 }
-export default class FormButton extends Block {
+export default class Link extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      tagName: 'input',
-      attributes: {
-        class: 'form-button',
-        value: props.title,
-        type: 'submit'
-      }
+      tagName: 'a',
+      attributes: { class: 'link' }
     })
   }
 
@@ -23,3 +20,5 @@ export default class FormButton extends Block {
     return this.compile('', this.props)
   }
 }
+//form link  attributes: { class: 'link' }
+//nav link   attributes: { class: 'js-nav-link' }

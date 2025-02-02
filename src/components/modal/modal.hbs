@@ -1,7 +1,6 @@
-<form id="myModal" class="modal">
-  <div class="modal-content">
+<div class="modal-content">
     <h1 class="modal-content__title">{{title}}</h1>
     {{> @partial-block}}
-    {{> FormButton title="OK" name="modalButton"}}
-  </div>
-</form>
+    {{> FormButton title="{{button.title}}" name="{{button.name}}" }}
+</div>
+

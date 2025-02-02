@@ -1,2 +1,22 @@
 import './modal.css'
-export { default as Modal } from './modal.hbs?raw'
+import { default as ModalTemplate } from './modal.hbs?raw'
+import Block from '../../services/block.ts'
+import { ButtonType, PropsType } from '../../types/types.ts'
+
+interface Props extends PropsType {
+  title: string
+  button: ButtonType
+}
+export default class Modal extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      tagName: 'form',
+      attributes: { class: 'modal' }
+    })
+  }
+
+  render() {
+    return this.compile(ModalTemplate, this.props)
+  }
+}

@@ -16,3 +16,7 @@ export type ClassNamesType = Array<string> | string
 export type HtmlElementAttrsType = Record<string, string | Array<string>> & {
   class?: ClassNamesType
 }
+export type ButtonType = {
+  title: string
+  name: string
+}
