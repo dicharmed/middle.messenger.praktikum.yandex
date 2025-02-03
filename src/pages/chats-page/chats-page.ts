@@ -1,19 +1,29 @@
-import { ChatMessage } from './components/chat-message/chat-message.ts'
-import { ChatPreview } from './components/chat-preview/chat-preview.ts'
-import { ChatWindow } from './components/chat-window/chat-window.ts'
-import { ChatsList } from './components/chats-list/chats-list.ts'
-import { SearchField } from './components/search-field/search-field.ts'
-import { Sidebar } from './components/sidebar/sidebar.ts'
 import './chats-page.css'
-import { registerTemplate } from '../../utils/register-template.ts'
+import Block from '../../services/block.ts'
+import { PropsType } from '../../types/types.ts'
+import Sidebar from './components/sidebar/sidebar.ts'
+import ChatWindow from './components/chat-window/chat-window.ts'
 
-registerTemplate({
-  ChatMessage,
-  ChatPreview,
-  ChatWindow,
-  ChatsList,
-  SearchField,
-  Sidebar
+import { default as ChatsPageTemplate } from './chats-page.hbs?raw'
+
+class ChatsPageClass extends Block {
+  constructor(props: PropsType) {
+    super(props)
+
+    if (!this.children.sidebar) {
+      this.children.sidebar = new Sidebar({})
+    }
+
+    if (!this.children.chatWindow) {
+      this.children.chatWindow = new ChatWindow({})
+    }
+  }
+
+  render() {
+    return this.compile(ChatsPageTemplate, this.props)
+  }
+}
+
+export const ChatsPage = new ChatsPageClass({
+  attributes: { class: 'chats-page' }
 })
-
-export { default as ChatsPage } from './chats-page.hbs?raw'

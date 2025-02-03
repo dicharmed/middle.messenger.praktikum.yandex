@@ -1,18 +1,17 @@
-<div class="chat-header">
-  <div class="chat-header-contact">
-    <div class="chat-header-avatar">
-      {{> Avatar s=true}}
-    </div>
-
-    <h2 class="chat-header__name">Вадим</h2>
+<div class="chat-header-contact">
+  <div class="chat-header-avatar">
+    {{avatar}}
   </div>
 
-  <div class="chat-header-menu">
-    {{> ButtonIcon url="/assets/menu-icon.svg"}}
-
-    <div class="chat-header-menu-dropdown">
-      {{> DropdownMenu}}
-    </div>
-  </div>
-
+  <h2 class="chat-header__name">{{title}}</h2>
 </div>
+
+<div class="chat-header-menu">
+  {{buttonIcon}}
+
+  <div class="chat-header-menu-dropdown">
+    {{dropdownMenu}}
+  </div>
+</div>
+
+

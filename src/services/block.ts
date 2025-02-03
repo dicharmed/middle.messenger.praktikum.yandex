@@ -22,18 +22,18 @@ abstract class Block {
   private static EVENTS = EventsEnum
   props: PropsType
   children: ChildrenType
+  lists: ListsType = {}
   private _eventBus: EventBus<BlockEvents>
-  // private _lists: ListsType = {}
   private _element: HTMLElement | null = null
   private _id: string | null = null
 
   protected constructor(propsAndChildren: PropsType) {
-    const { children, props } = this._getChildren(propsAndChildren)
+    const { children, props, lists } = this._getChildren(propsAndChildren)
     const isWithInternalID = props.withInternalID || false
     this._eventBus = new EventBus<BlockEvents>()
     this._id = makeUUID()
     this.children = this._makePropsProxy(children, this) as ChildrenType
-    // this._lists = this._makePropsProxy(lists, this) as ListsType
+    this.lists = this._makePropsProxy(lists, this) as ListsType
     this.props = this._makePropsProxy(
       { ...props, __id: isWithInternalID ? this._id : null },
       this
@@ -109,11 +109,17 @@ abstract class Block {
 
   compile(template: string, props: PropsType) {
     const propsAndStubs = { ...props }
-
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = new Handlebars.SafeString(
         `<div data-id="${child._id}"></div>`
       )
+    })
+    Object.entries(this.lists).forEach(([key, arr]) => {
+      arr.forEach(item => {
+        propsAndStubs[key] = new Handlebars.SafeString(
+          `<div data-id="${key}_${(item as { _id: string })._id}"></div>`
+        )
+      })
     })
 
     const fragment = this._createDocumentElement(
@@ -129,6 +135,28 @@ abstract class Block {
       if (stub) stub.replaceWith(content as HTMLElement)
     })
 
+    Object.entries(this.lists).forEach(([key, arr]) => {
+      const listTemplate = this._createDocumentElement(
+        'template'
+      ) as HTMLTemplateElement
+
+      arr.forEach(item => {
+        if (item instanceof Block) {
+          const content = item.getContent()
+          if (content) {
+            listTemplate.content.append(content)
+          }
+        } else {
+          listTemplate.content.append(`${item}`)
+        }
+        const stub = fragment.content.querySelector(
+          `[data-id="${key}_${(item as { _id: string })._id}"]`
+        )
+        if (stub) {
+          stub.replaceWith(listTemplate.content)
+        }
+      })
+    })
     return fragment.content
   }
 

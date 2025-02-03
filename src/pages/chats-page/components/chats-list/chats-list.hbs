@@ -1,5 +1,3 @@
-<div class="chats">
-  <div class="chats__item">{{> ChatPreview }}</div>
-  <div class="chats__item">{{> ChatPreview }}</div>
-  <div class="chats__item">{{> ChatPreview amount=2}}</div>
-</div>
+{{#each chats}}
+  <div class="chats__item">{{chatPreview this}}</div>
+{{/each}}

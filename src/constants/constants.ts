@@ -9,3 +9,6 @@ export enum SIZE {
   medium = 'medium',
   large = 'large'
 }
+export enum HELPERS {
+  'compare' = 'compare'
+}

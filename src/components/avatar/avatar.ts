@@ -5,7 +5,7 @@ import { ClassNamesType, PropsType } from '../../types/types.ts'
 import { SIZE } from '../../constants/constants.ts'
 import { getClassNamesFromSize } from './utils/getClassNamesFromSize.ts'
 import Handlebars from 'handlebars'
-import { HELPERS } from '../../helpers/constants.ts'
+import { HELPERS } from '../../constants/constants.ts'
 import { compare } from '../../helpers/compare.ts'
 
 interface Props extends PropsType {
@@ -28,4 +28,5 @@ export default class Avatar extends Block {
     return this.compile(AvatarTemplate, this.props)
   }
 }
+Handlebars.registerPartial('Avatar', AvatarTemplate)
 Handlebars.registerHelper(HELPERS.compare, compare)
