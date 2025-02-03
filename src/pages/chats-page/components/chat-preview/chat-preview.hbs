@@ -1,13 +1,13 @@
-{{> Avatar m=true}}
+{{avatar}}
   <div class="chat-content">
     <div class="chat-content-top">
-      <h2 class="chat-content__author">{{name}}</h2>
-      <h3 class="chat-content__time">{{time}}</h3>
+      <h2 class="chat-content__sender">{{message.sender.firstName}}{{#if message.sender.lastName}}&nbsp{{message.sender.lastName}}{{/if}}</h2>
+      <h3 class="chat-content__time">{{message.time}}</h3>
     </div>
 
     <div class="chat-content-bottom">
-      <h3 class="chat-content__sender">{{#compare type "===" 'incoming'}}You:{{/compare}}</h3>
-      <h3 class="chat-content__message">{{text}}</h3>
+      {{#compare message.type "===" 'incoming'}}<h3 class="chat-content__last-sender">You:</h3>{{/compare}}
+      <h3 class="chat-content__message">{{message.text}}</h3>
     </div>
     {{#if amount}}
       <div class="chat-content__amount">{{amount}}</div>

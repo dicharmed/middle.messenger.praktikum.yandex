@@ -3,7 +3,7 @@ import { default as ModalTemplate } from './modal.hbs?raw'
 import Block from '../../services/block.ts'
 import { ButtonType, PropsType } from '../../types/types.ts'
 
-interface Props extends PropsType {
+type Props = PropsType & {
   title: string
   button: ButtonType
 }

@@ -22,7 +22,7 @@
   margin-bottom: 6px;
 }
 
-.chat-content__author {
+.chat-content__sender {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-primary-color);
@@ -39,15 +39,23 @@
   column-gap: 3px;
 }
 
-.chat-content__sender,
+.chat-content__last-sender,
 .chat-content__message {
   margin: 0;
   font-size: 12px;
   font-weight: 500;
 }
 
-.chat-content__sender {
+.chat-content__last-sender {
   color: var(--text-primary-color);
+}
+
+.chat-content__sender,
+.chat-content__message {
+  text-overflow: ellipsis;
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .chat-content__message {

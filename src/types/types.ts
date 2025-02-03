@@ -22,13 +22,26 @@ export type ButtonType = {
 }
 export type MessageType = {
   text: string
-  status: 'seen' | 'sent' | 'failed'
+  status?: 'seen' | 'sent' | 'failed'
   type: 'incoming' | 'outcoming'
   time: string
-  author: string
+  sender: {
+    firstName: string
+    lastName: string
+  }
 }
 export type ChatPreviewType = {
   message: MessageType
   amount?: number
 }
 export type LinkType = { href: string; title: string; exact?: boolean }
+export type FormElementType = {
+  name: string
+  title?: string
+  type?: string
+  value?: string
+  placeholder?: string
+}
+export type ErrorType = {
+  message: string
+}

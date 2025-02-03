@@ -1,11 +1,8 @@
 import './form-button.css'
 import Block from '../../services/block.ts'
-import { PropsType } from '../../types/types.ts'
+import { FormElementType, PropsType } from '../../types/types.ts'
 
-interface Props extends PropsType {
-  name?: string
-  title: string
-}
+type Props = PropsType & FormElementType
 export default class FormButton extends Block {
   constructor(props: Props) {
     super({
@@ -13,7 +10,7 @@ export default class FormButton extends Block {
       tagName: 'input',
       attributes: {
         class: 'form-button',
-        value: props.title,
+        value: String(props.title),
         type: 'submit'
       }
     })

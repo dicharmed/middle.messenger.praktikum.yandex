@@ -3,7 +3,7 @@ import Block from '../../services/block.ts'
 import { PropsType } from '../../types/types.ts'
 import { default as ButtonArrowTemplate } from './button-arrow.hbs?raw'
 
-interface Props extends PropsType {
+type Props = PropsType & {
   direction?: 'left' | 'right'
 }
 export default class ButtonArrow extends Block {

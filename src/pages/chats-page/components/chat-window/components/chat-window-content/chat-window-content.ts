@@ -9,14 +9,20 @@ const message1: MessageType = {
   type: 'incoming',
   time: '12:30',
   status: 'sent',
-  author: 'You'
+  sender: {
+    firstName: 'Lucy',
+    lastName: ''
+  }
 }
 const message2: MessageType = {
   text: 'Круто!',
   time: '12:31',
   status: 'seen',
   type: 'outcoming',
-  author: 'Mike Henderson'
+  sender: {
+    firstName: 'Mike',
+    lastName: 'Henderson'
+  }
 }
 const messages = [message1, message2]
 

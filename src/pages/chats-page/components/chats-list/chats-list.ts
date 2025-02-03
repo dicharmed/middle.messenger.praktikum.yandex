@@ -5,7 +5,7 @@ import { ChatPreviewType, PropsType } from '../../../../types/types.ts'
 import ChatPreview from '../chat-preview/chat-preview.ts'
 
 type Props = PropsType & {
-  chats: Array<ChatPreviewType> | undefined
+  chats: Array<ChatPreviewType>
 }
 export default class ChatsList extends Block {
   constructor(props: Props) {
@@ -13,15 +13,11 @@ export default class ChatsList extends Block {
       ...props,
       attributes: { class: 'chats' }
     })
-    if (!this.children.chatPreview) {
-      this.children.chatPreview = new ChatPreview({
-        message: {
-          text: 'hello',
-          status: 'seen',
-          time: '12:30',
-          type: 'outcoming',
-          author: 'Mike Portman'
-        }
+    if (!this.lists.chatPreviewList) {
+      this.lists.chatPreviewList = props.chats.map(chat => {
+        return new ChatPreview({
+          ...chat
+        })
       })
     }
   }
