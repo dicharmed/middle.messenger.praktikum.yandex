@@ -28,4 +28,4 @@ class HomePageClass extends Block {
   }
 }
 
-export const HomePage = new HomePageClass({ links: navLinks })
+export default new HomePageClass({ links: navLinks })

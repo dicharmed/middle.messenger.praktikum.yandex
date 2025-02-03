@@ -4,11 +4,8 @@ import Block from '../../services/block.ts'
 import { ClassNamesType, PropsType } from '../../types/types.ts'
 import { SIZE } from '../../constants/enums.ts'
 import { getClassNamesFromSize } from './utils/getClassNamesFromSize.ts'
-import Handlebars from 'handlebars'
-import { HELPERS } from '../../constants/enums.ts'
-import { compare } from '../../helpers/compare.ts'
 
-interface Props extends PropsType {
+type Props = PropsType & {
   url?: string
   size?: SIZE.medium | SIZE.small
 }
@@ -28,5 +25,5 @@ export default class Avatar extends Block {
     return this.compile(AvatarTemplate, this.props)
   }
 }
-Handlebars.registerPartial('Avatar', AvatarTemplate)
-Handlebars.registerHelper(HELPERS.compare, compare)
+
+// Handlebars.registerHelper(HELPERS.compare, compare)
