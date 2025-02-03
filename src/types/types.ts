@@ -33,6 +33,7 @@ export type MessageType = {
 export type ChatPreviewType = {
   message: MessageType
   amount?: number
+  active?: boolean
 }
 export type LinkType = { href: string; title: string; exact?: boolean }
 export type FormElementType = {

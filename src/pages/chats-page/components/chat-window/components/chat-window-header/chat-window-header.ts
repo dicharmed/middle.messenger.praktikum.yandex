@@ -1,15 +1,13 @@
 import './chat-window-header.css'
 import Block from '../../../../../../services/block.ts'
-import { PropsType } from '../../../../../../types/types.ts'
+import { MessageType, PropsType } from '../../../../../../types/types.ts'
 import { default as ChatWindowHeaderTemplate } from './chat-window-header.hbs?raw'
 import Avatar from '../../../../../../components/avatar/avatar.ts'
 import { SIZE } from '../../../../../../constants/enums.ts'
 import ButtonIcon from '../../../../../../components/button-icon/button-icon.ts'
 import DropdownMenu from '../../../../../../components/dropdown-menu/dropdown-menu.ts'
 
-type Props = PropsType & {
-  title?: string
-}
+type Props = PropsType & Pick<MessageType, 'sender'>
 export default class ChatWindowHeader extends Block {
   constructor(props: Props) {
     super({

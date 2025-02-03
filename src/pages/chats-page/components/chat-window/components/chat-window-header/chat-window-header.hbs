@@ -3,7 +3,7 @@
     {{avatar}}
   </div>
 
-  <h2 class="chat-header__name">{{title}}</h2>
+  <h2 class="chat-header__name">{{sender.firstName}}{{#if sender.lastName}}&nbsp{{sender.lastName}}{{/if}}</h2>
 </div>
 
 <div class="chat-header-menu">

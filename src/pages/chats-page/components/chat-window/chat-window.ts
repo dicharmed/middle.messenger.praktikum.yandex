@@ -15,7 +15,9 @@ export default class ChatWindow extends Block {
     })
 
     if (!this.children.header) {
-      this.children.header = new ChatWindowHeader({})
+      this.children.header = new ChatWindowHeader({
+        sender: { firstName: 'Michael', lastName: '' }
+      })
     }
     if (!this.children.content) {
       this.children.content = new ChatWindowContent({})
