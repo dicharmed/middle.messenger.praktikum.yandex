@@ -31,3 +31,4 @@ export type ChatPreviewType = {
   message: MessageType
   amount?: number
 }
+export type LinkType = { href: string; title: string; exact?: boolean }

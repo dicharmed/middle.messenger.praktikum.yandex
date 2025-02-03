@@ -1,5 +1,5 @@
-import { render } from './render'
 import { Route } from '../types/route.ts'
+import { render } from './render.ts'
 
 export function registerRouter(config: Route[]): void {
   function goTo(path = '/') {

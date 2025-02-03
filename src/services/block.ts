@@ -8,7 +8,7 @@ import {
 import { v4 as makeUUID } from 'uuid'
 import { templateCompile } from '../utils/template-compile.ts'
 import Handlebars from 'handlebars'
-import { EVENTS as EventsEnum } from '../constants/constants.ts'
+import { EVENTS as EventsEnum } from '../constants/enums.ts'
 
 interface BlockEvents {
   [key: string]: (...args: unknown[]) => void

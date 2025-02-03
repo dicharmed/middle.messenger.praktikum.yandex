@@ -2,10 +2,10 @@ import './avatar.css'
 import { default as AvatarTemplate } from './avatar.hbs?raw'
 import Block from '../../services/block.ts'
 import { ClassNamesType, PropsType } from '../../types/types.ts'
-import { SIZE } from '../../constants/constants.ts'
+import { SIZE } from '../../constants/enums.ts'
 import { getClassNamesFromSize } from './utils/getClassNamesFromSize.ts'
 import Handlebars from 'handlebars'
-import { HELPERS } from '../../constants/constants.ts'
+import { HELPERS } from '../../constants/enums.ts'
 import { compare } from '../../helpers/compare.ts'
 
 interface Props extends PropsType {

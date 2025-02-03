@@ -1,4 +1,4 @@
-import { SIZE } from '../../../constants/constants.ts'
+import { SIZE } from '../../../constants/enums.ts'
 
 export const getClassNamesFromSize = (size: string | undefined) => {
   return [

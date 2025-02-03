@@ -3,7 +3,7 @@ import Block from '../../../../../../services/block.ts'
 import { PropsType } from '../../../../../../types/types.ts'
 import { default as ChatWindowHeaderTemplate } from './chat-window-header.hbs?raw'
 import Avatar from '../../../../../../components/avatar/avatar.ts'
-import { SIZE } from '../../../../../../constants/constants.ts'
+import { SIZE } from '../../../../../../constants/enums.ts'
 import ButtonIcon from '../../../../../../components/button-icon/button-icon.ts'
 import DropdownMenu from '../../../../../../components/dropdown-menu/dropdown-menu.ts'
 

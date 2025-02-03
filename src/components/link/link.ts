@@ -1,23 +1,18 @@
 import './link.css'
 import Block from '../../services/block.ts'
-import { PropsType } from '../../types/types.ts'
-
-interface Props extends PropsType {
-  href: string
-  title: string
-  className: string
-}
+import { LinkType, PropsType } from '../../types/types.ts'
+import { default as LinkTemplate } from './link.hbs?raw'
+type Props = PropsType & LinkType
 export default class Link extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      tagName: 'a',
-      attributes: { class: 'link' }
+      tagName: 'a'
     })
   }
 
   render() {
-    return this.compile('', this.props)
+    return this.compile(LinkTemplate, this.props)
   }
 }
 //form link  attributes: { class: 'link' }
