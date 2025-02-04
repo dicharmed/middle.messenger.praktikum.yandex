@@ -42,7 +42,10 @@ export type FormElementType = {
   type?: string
   value?: string
   placeholder?: string
+  label?: string
 }
 export type ErrorType = {
   message: string
+  status?: string
+  userMessage?: string
 }

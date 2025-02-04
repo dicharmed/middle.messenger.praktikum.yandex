@@ -6,20 +6,10 @@
   border-bottom: 1px solid var(--light-grey);
 }
 
-.profile-form-field__title,
-.profile-form-field__desc {
+.profile-form-field__title {
   font-size: 13px;
   font-weight: 400;
   text-wrap-mode: nowrap;
-}
-
-.profile-form-field__title {
   color: var(--text-primary-color);
 }
 
-.profile-form-field__desc {
-  width: 100%;
-  color: var(--text-secondary-color);
-  text-align: right;
-  background: none;
-}

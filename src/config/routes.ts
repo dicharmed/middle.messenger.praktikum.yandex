@@ -17,11 +17,11 @@ export const routes: Array<Route> = [
   {
     path: '/chats',
     component: pages.ChatsPage
+  },
+  {
+    path: '/profile',
+    component: pages.ProfilePage
   }
-  // {
-  //   path: '/profile',
-  //   component: pages.ProfilePage
-  // },
   // {
   //   path: '/profile/edit',
   //   component: pages.ProfilePageEdit
