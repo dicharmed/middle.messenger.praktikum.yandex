@@ -28,7 +28,7 @@ export const routes: Array<Route> = [
   // },
   // {
   //   path: '/profile/change-password',
-  //   component: pages.ProfilePageChangePswd
+  //   component: pages.ProfileChangePswdPage
   // },
   // {
   //   path: '*',

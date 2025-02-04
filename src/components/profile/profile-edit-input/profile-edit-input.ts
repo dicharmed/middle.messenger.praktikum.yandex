@@ -1,11 +1,11 @@
-import Block from '../../../../../services/block.ts'
-import { FormElementType, PropsType } from '../../../../../types/types.ts'
-import './profile-page-edit-input.css'
+import Block from '../../../services/block.ts'
+import { FormElementType, PropsType } from '../../../types/types.ts'
+import './profile-edit-input.css'
 
 type Props = PropsType & {
   inputProps: FormElementType
 }
-export default class ProfilePageEditInput extends Block {
+export default class ProfileEditInput extends Block {
   constructor(props: Props) {
     const { inputProps, ...rest } = props
     super({

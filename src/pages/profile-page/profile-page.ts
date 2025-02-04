@@ -2,9 +2,10 @@ import { PropsType } from '../../types/types.ts'
 import Block from '../../services/block.ts'
 import { default as ProfilePageTemplate } from './profile-page.hbs?raw'
 import Avatar from '../../components/avatar/avatar.ts'
-import ProfileFormDetails from './components/profile-form-details/profile-form-details.ts'
+
 import './profile-page.css'
 import ButtonArrow from '../../components/button-arrow/button-arrow.ts'
+import ProfileFormDetails from '../../components/profile/profile-form-details/profile-form-details.ts'
 
 type Props = PropsType
 

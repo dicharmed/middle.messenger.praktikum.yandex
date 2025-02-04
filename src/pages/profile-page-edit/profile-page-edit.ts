@@ -1,16 +1,16 @@
 import { default as ProfilePageEditTemplate } from './profile-page-edit.hbs?raw'
-import Block from '../../../services/block.ts'
-import { PropsType } from '../../../types/types.ts'
-import ProfilePageAvatarUpload from '../components/profile-page-avatar-upload/profile-page-avatar-upload.ts'
-import ButtonArrow from '../../../components/button-arrow/button-arrow.ts'
-import ProfileFormDetails from '../components/profile-form-details/profile-form-details.ts'
+import Block from '../../services/block.ts'
+import { PropsType } from '../../types/types.ts'
+import ButtonArrow from '../../components/button-arrow/button-arrow.ts'
+import ProfileFormDetails from '../../components/profile/profile-form-details/profile-form-details.ts'
+import ProfileAvatarUpload from '../../components/profile/profile-avatar-upload/profile-avatar-upload.ts'
 
 class ProfilePageEditClass extends Block {
   constructor(props: PropsType) {
     super(props)
 
     if (!this.children.profilePageAvatarUpload) {
-      this.children.profilePageAvatarUpload = new ProfilePageAvatarUpload({})
+      this.children.profilePageAvatarUpload = new ProfileAvatarUpload({})
     }
     if (!this.children.profileFormDetails) {
       this.children.profileFormDetails = new ProfileFormDetails({})
