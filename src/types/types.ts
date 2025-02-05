@@ -35,10 +35,9 @@ export type ChatPreviewType = {
   amount?: number
   active?: boolean
 }
-export type LinkType = { href: string; title: string; exact?: boolean }
+export type LinkType = { href: string; title: string }
 export type FormElementType = {
   name: string
-  title?: string
   type?: string
   value?: string
   placeholder?: string

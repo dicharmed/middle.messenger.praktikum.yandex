@@ -20,6 +20,16 @@ export const loginFormFields: Array<FormElementType> = [
   { type: 'text', name: 'phone', value: '+7(909)-967-30-30', label: 'Телефон' }
 ]
 
+export const signUpFormFields: Array<FormElementType> = [
+  { name: 'email', type: 'text', label: 'Почта' },
+  { name: 'login', type: 'text', label: 'Логин' },
+  { name: 'first_name', type: 'text', label: 'Имя' },
+  { name: 'second_name', type: 'text', label: 'Фамилия' },
+  { name: 'phone', type: 'text', label: 'Телефон' },
+  { name: 'password', type: 'password', label: 'Пароль' },
+  { name: 'password', type: 'password', label: 'Пароль еще раз' }
+]
+
 export const profileFormEditFields: Array<FormElementType> = [
   {
     type: 'password',

@@ -6,14 +6,14 @@ export const routes: Array<Route> = [
     path: '/',
     component: pages.HomePage
   },
-  // {
-  //   path: '/sign-up',
-  //   component: pages.SignUpPage
-  // },
-  // {
-  //   path: '/login',
-  //   component: pages.LoginPage
-  // },
+  {
+    path: '/sign-up',
+    component: pages.SignUpPage
+  },
+  {
+    path: '/login',
+    component: pages.LoginPage
+  },
   {
     path: '/chats',
     component: pages.ChatsPage
@@ -29,9 +29,9 @@ export const routes: Array<Route> = [
   {
     path: '/profile/change-password',
     component: pages.ProfileChangePswdPage
+  },
+  {
+    path: '*',
+    component: pages.ErrorPage
   }
-  // {
-  //   path: '*',
-  //   component: pages.ErrorPage
-  // }
 ]

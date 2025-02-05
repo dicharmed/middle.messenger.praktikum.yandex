@@ -1,19 +1,17 @@
-import './link.css'
 import Block from '../../services/block.ts'
 import { LinkType, PropsType } from '../../types/types.ts'
-import { default as LinkTemplate } from './link.hbs?raw'
 
 type Props = PropsType & LinkType
-export default class Link extends Block {
+export default class NavLink extends Block {
   constructor(props: Props) {
     super({
       ...props,
       tagName: 'a',
-      attributes: { class: 'link' }
+      attributes: { class: 'js-nav-link', href: props.href }
     })
   }
 
   render() {
-    return this.compile(LinkTemplate, this.props)
+    return this.compile('{{title}}', this.props)
   }
 }

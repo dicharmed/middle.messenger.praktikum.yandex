@@ -1,24 +1,18 @@
 import { default as HomePageTemplate } from './home-page.hbs?raw'
 import Block from '../../services/block.ts'
 import { LinkType, PropsType } from '../../types/types.ts'
-import Link from '../../components/link/link.ts'
 import { navLinks } from '../../constants/constants.ts'
+import NavLink from '../../components/navLink/navLink.ts'
+import './home-page.css'
 
 type Props = PropsType & { links: Array<LinkType> }
 class HomePageClass extends Block {
   constructor(props: Props) {
-    super({ ...props, tagName: 'nav' })
+    super({ ...props, tagName: 'nav', attributes: { class: 'nav' } })
 
     if (!this.lists.navLinks) {
       this.lists.navLinks = props.links.map(link => {
-        return new Link({
-          ...link,
-          title: link.title,
-          attributes: {
-            class: 'js-nav-link',
-            href: link.href
-          }
-        })
+        return new NavLink(link)
       })
     }
   }

@@ -9,7 +9,10 @@ type Props = PropsType &
   }
 export default class FormInput extends Block {
   constructor(props: Props) {
-    super({ ...props, attributes: { class: 'input' } })
+    super({
+      ...props,
+      attributes: { class: 'input' }
+    })
   }
 
   render() {
