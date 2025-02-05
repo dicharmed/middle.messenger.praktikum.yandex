@@ -15,12 +15,16 @@ class SignUpPageClass extends Block {
   constructor(props: Props) {
     super(props)
 
+    signUpFormFields.forEach(field => {
+      this.children[field.name] = new FormInput({ ...field })
+    })
+
     if (!this.children.form) {
       this.children.form = new Form({
         title: 'Вход',
         formProps: { name: 'loginForm' },
         content: signUpFormFields.map(field => {
-          return new FormInput({ ...field })
+          return this.children[field.name]
         }),
         actions: [
           new FormButton({
@@ -31,7 +35,10 @@ class SignUpPageClass extends Block {
             title: 'Войти',
             href: `/login`
           })
-        ]
+        ],
+        events: {
+          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this)
+        }
       })
     }
   }
@@ -44,3 +51,17 @@ class SignUpPageClass extends Block {
 export const SignUpPage = new SignUpPageClass({
   attributes: { class: 'sign-up-page' }
 })
+
+const getFieldsValues = (context: Block) => {
+  const values = {}
+  signUpFormFields.forEach(field => {
+    Object.assign(values, {
+      [field.name]: (context.children[field.name] as FormInput).getValue()
+    })
+  })
+  return values
+}
+const handleSubmit = (e: SubmitEvent, context: Block) => {
+  e.preventDefault()
+  console.log('SignUp form: ', getFieldsValues(context))
+}

@@ -27,7 +27,7 @@ export const signUpFormFields: Array<FormElementType> = [
   { name: 'second_name', type: 'text', label: 'Фамилия' },
   { name: 'phone', type: 'text', label: 'Телефон' },
   { name: 'password', type: 'password', label: 'Пароль' },
-  { name: 'password', type: 'password', label: 'Пароль еще раз' }
+  { name: 'passwordCheck', type: 'password', label: 'Пароль еще раз' }
 ]
 
 export const profileFormEditFields: Array<FormElementType> = [
