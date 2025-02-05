@@ -14,7 +14,9 @@ export default class FormInput extends Block {
       attributes: { class: 'input' }
     })
   }
-
+  getValue() {
+    return (this.element?.firstElementChild as HTMLInputElement).value
+  }
   render() {
     return this.compile(FormInputTemplate, this.props)
   }

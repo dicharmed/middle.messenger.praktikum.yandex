@@ -8,20 +8,36 @@ import Link from '../../components/link/link.ts'
 import Form from '../../components/form/form.ts'
 import FormInput from '../../components/form-input/form-input.ts'
 
+const handleSubmit = (e: SubmitEvent, context: Block) => {
+  e.preventDefault()
+  console.log('login form: ', {
+    login: (context.children.login as FormInput).getValue(),
+    password: (context.children.password as FormInput).getValue()
+  })
+}
+
 type Props = PropsType
 
 class LoginPageClass extends Block {
   constructor(props: Props) {
     super(props)
 
+    this.children.login = new FormInput({
+      name: 'login',
+      type: 'text',
+      label: 'Логин'
+    })
+    this.children.password = new FormInput({
+      name: 'password',
+      type: 'password',
+      label: 'Пароль'
+    })
+
     if (!this.children.form) {
       this.children.form = new Form({
         title: 'Вход',
         formProps: { name: 'loginForm' },
-        content: [
-          new FormInput({ name: 'login', type: 'text', label: 'Логин' }),
-          new FormInput({ name: 'password', type: 'password', label: 'Пароль' })
-        ],
+        content: [this.children.login, this.children.password],
         actions: [
           new FormButton({
             name: 'login-submit',
@@ -31,7 +47,10 @@ class LoginPageClass extends Block {
             title: 'Нет аккаунта?',
             href: `/chats`
           })
-        ]
+        ],
+        events: {
+          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this)
+        }
       })
     }
   }
