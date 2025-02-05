@@ -5,6 +5,8 @@ import Avatar from '../../components/avatar/avatar.ts'
 import { profileFormEditFields } from '../../constants/constants.ts'
 import ProfileFormField from '../../components/profile/profile-form-field/profile-form-field.ts'
 import ButtonArrow from '../../components/button-arrow/button-arrow.ts'
+import FormButton from '../../components/form-button/form-button.ts'
+import '../profile-page/profile-page.css'
 
 class ProfileChangePswdClass extends Block {
   constructor(props: PropsType) {
@@ -16,11 +18,17 @@ class ProfileChangePswdClass extends Block {
 
     if (!this.lists.editFieldsList) {
       this.lists.editFieldsList = profileFormEditFields.map(field => {
-        return new ProfileFormField({ name: '', field })
+        return new ProfileFormField({ field })
       })
     }
     if (!this.children.buttonForm) {
-      this.children.buttonForm = new ButtonArrow({ title: 'Сохранить' })
+      this.children.buttonForm = new FormButton({
+        title: 'Сохранить',
+        name: 'profile-change-pswd-form'
+      })
+    }
+    if (!this.children.buttonArrow) {
+      this.children.buttonArrow = new ButtonArrow({ direction: 'left' })
     }
   }
 
@@ -28,4 +36,6 @@ class ProfileChangePswdClass extends Block {
     return this.compile(ProfilePageChangePswdTemplate, this.props)
   }
 }
-export const ProfileChangePswdPage = new ProfileChangePswdClass({})
+export const ProfileChangePswdPage = new ProfileChangePswdClass({
+  attributes: { class: 'profile-page' }
+})

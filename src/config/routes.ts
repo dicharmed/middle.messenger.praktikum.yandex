@@ -21,15 +21,15 @@ export const routes: Array<Route> = [
   {
     path: '/profile',
     component: pages.ProfilePage
+  },
+  {
+    path: '/profile/edit',
+    component: pages.ProfilePageEdit
+  },
+  {
+    path: '/profile/change-password',
+    component: pages.ProfileChangePswdPage
   }
-  // {
-  //   path: '/profile/edit',
-  //   component: pages.ProfilePageEdit
-  // },
-  // {
-  //   path: '/profile/change-password',
-  //   component: pages.ProfileChangePswdPage
-  // },
   // {
   //   path: '*',
   //   component: pages.ErrorPage
