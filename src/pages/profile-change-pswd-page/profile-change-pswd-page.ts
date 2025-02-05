@@ -32,6 +32,20 @@ class ProfileChangePswdClass extends Block {
     }
   }
 
+  getValues = () => {
+    const values = {}
+    this.lists.editFieldsList.forEach(element => {
+      const el = (element as Block).children.input
+      const name = el.props.attributes!.name as string
+      const input = el as ProfileFormField
+
+      Object.assign(values, {
+        [name]: input.getValue()
+      })
+    })
+    return values
+  }
+
   render() {
     return this.compile(ProfilePageChangePswdTemplate, this.props)
   }
@@ -39,3 +53,5 @@ class ProfileChangePswdClass extends Block {
 export const ProfileChangePswdPage = new ProfileChangePswdClass({
   attributes: { class: 'profile-page' }
 })
+
+console.log(ProfileChangePswdPage.getValues())

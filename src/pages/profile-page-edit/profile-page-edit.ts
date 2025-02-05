@@ -26,6 +26,10 @@ class ProfilePageEditClass extends Block {
     if (!this.children.buttonArrow) {
       this.children.buttonArrow = new ButtonArrow({ direction: 'left' })
     }
+
+    console.log(
+      (this.children.profileFormDetails as ProfileFormDetails).getValues()
+    )
   }
 
   render() {

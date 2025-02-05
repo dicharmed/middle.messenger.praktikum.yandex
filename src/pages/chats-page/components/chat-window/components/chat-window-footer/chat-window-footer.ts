@@ -19,7 +19,17 @@ export default class ChatWindowFooter extends Block {
       })
     }
     if (!this.children.buttonArrow) {
-      this.children.buttonArrow = new ButtonArrow({ direction: 'right' })
+      this.children.buttonArrow = new ButtonArrow({
+        direction: 'right',
+        events: {
+          click: () => {
+            console.log(
+              'message: ',
+              (this.children.inputMessage as InputMessage).getValue()
+            )
+          }
+        }
+      })
     }
   }
 

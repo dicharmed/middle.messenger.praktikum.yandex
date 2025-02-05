@@ -15,6 +15,10 @@ export default class InputMessage extends Block {
     })
   }
 
+  getValue() {
+    return (this.element as HTMLInputElement).value
+  }
+
   render() {
     return this.compile('', this.props)
   }

@@ -19,6 +19,10 @@ export default class ProfileFormField extends Block {
     }
   }
 
+  getValue() {
+    return (this.children.input as ProfileEditInput).getValue()
+  }
+
   render() {
     return this.compile(ProfileFormFieldTemplate, this.props)
   }
