@@ -1,5 +1,5 @@
 import './sign-up-page.css'
-import { PropsType } from '../../types/types.ts'
+import { PropsType, SignUpFormDataType } from '../../types/types.ts'
 import Block from '../../services/block.ts'
 import Form from '../../components/form/form.ts'
 import FormInput from '../../components/form-input/form-input.ts'
@@ -8,6 +8,7 @@ import Link from '../../components/link/link.ts'
 
 import { default as SignUpPageTemplate } from './sign-up-page.hbs?raw'
 import { signUpFormFields } from '../../constants/constants.ts'
+import { validateForm } from '../../utils/validateForm.ts'
 
 type Props = PropsType
 
@@ -61,7 +62,14 @@ const getFieldsValues = (context: Block) => {
   })
   return values
 }
+const validate = (context: Block) => {
+  const data = getFieldsValues(context)
+  const errors = validateForm(data as SignUpFormDataType)
+  if (errors) {
+    console.error(errors)
+  }
+}
 const handleSubmit = (e: SubmitEvent, context: Block) => {
   e.preventDefault()
-  console.log('SignUp form: ', getFieldsValues(context))
+  console.log('SignUp form: ', validate(context))
 }

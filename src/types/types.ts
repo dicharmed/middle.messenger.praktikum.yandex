@@ -1,4 +1,5 @@
 import Block from '../services/block.ts'
+import { FORM_FIELDS_NAMES } from '../constants/enums.ts'
 
 export type CallbackType = (...args: Array<unknown>) => void
 export type TagNameType = keyof HTMLElementTagNameMap
@@ -48,3 +49,46 @@ export type ErrorType = {
   status?: string
   userMessage?: string
 }
+
+export type FormErrorType = Partial<Record<FORM_FIELDS_NAMES, string>>
+
+export type LoginFormDataType = {
+  [FORM_FIELDS_NAMES.login]: string
+  [FORM_FIELDS_NAMES.password]: string
+}
+
+export type SignUpFormDataType = {
+  [FORM_FIELDS_NAMES.email]: string
+  [FORM_FIELDS_NAMES.login]: string
+  [FORM_FIELDS_NAMES.first_name]: string
+  [FORM_FIELDS_NAMES.second_name]: string
+  [FORM_FIELDS_NAMES.phone]: string
+  [FORM_FIELDS_NAMES.password]: string
+  [FORM_FIELDS_NAMES.passwordCheck]: string
+}
+
+export type ProfileFormDataType = {
+  [FORM_FIELDS_NAMES.email]: string
+  [FORM_FIELDS_NAMES.login]: string
+  [FORM_FIELDS_NAMES.first_name]: string
+  [FORM_FIELDS_NAMES.second_name]: string
+  [FORM_FIELDS_NAMES.phone]: string
+  [FORM_FIELDS_NAMES.display_name]: string
+}
+
+export type ProfileFormEditPswdDataType = {
+  [FORM_FIELDS_NAMES.oldPassword]: string
+  [FORM_FIELDS_NAMES.newPassword]: string
+  [FORM_FIELDS_NAMES.newPasswordControl]: string
+}
+
+export type ChatFormMessageDataType = {
+  [FORM_FIELDS_NAMES.message]: string
+}
+
+export type FormDataType =
+  | LoginFormDataType
+  | SignUpFormDataType
+  | ProfileFormDataType
+  | ProfileFormEditPswdDataType
+  | ChatFormMessageDataType

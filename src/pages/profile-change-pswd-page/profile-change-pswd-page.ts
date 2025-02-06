@@ -2,7 +2,7 @@ import { default as ProfilePageChangePswdTemplate } from './profile-change-pswd-
 import Block from '../../services/block.ts'
 import { PropsType } from '../../types/types.ts'
 import Avatar from '../../components/avatar/avatar.ts'
-import { profileFormEditFields } from '../../constants/constants.ts'
+import { profileFormEditPswdFields } from '../../constants/constants.ts'
 import ProfileFormField from '../../components/profile/profile-form-field/profile-form-field.ts'
 import ButtonArrow from '../../components/button-arrow/button-arrow.ts'
 import FormButton from '../../components/form-button/form-button.ts'
@@ -17,7 +17,7 @@ class ProfileChangePswdClass extends Block {
     }
 
     if (!this.lists.editFieldsList) {
-      this.lists.editFieldsList = profileFormEditFields.map(field => {
+      this.lists.editFieldsList = profileFormEditPswdFields.map(field => {
         return new ProfileFormField({ field })
       })
     }

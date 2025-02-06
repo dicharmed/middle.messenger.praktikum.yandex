@@ -21,3 +21,17 @@ export enum NAV_LINKS {
   profileEdit = 'Изменить профиль',
   profilePasswordChange = 'Изменить пароль'
 }
+export enum FORM_FIELDS_NAMES {
+  email = 'email',
+  login = 'login',
+  first_name = 'first_name',
+  second_name = 'second_name',
+  display_name = 'display_name',
+  phone = 'phone',
+  password = 'password',
+  passwordCheck = 'passwordCheck',
+  oldPassword = 'oldPassword',
+  newPassword = 'newPassword',
+  newPasswordControl = 'newPasswordControl',
+  message = 'message'
+}

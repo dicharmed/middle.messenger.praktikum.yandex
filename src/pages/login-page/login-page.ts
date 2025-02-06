@@ -1,20 +1,15 @@
 import './login-page.css'
 
 import { default as LoginPageTemplate } from './login-page.hbs?raw'
-import { PropsType } from '../../types/types.ts'
+import { LoginFormDataType, PropsType } from '../../types/types.ts'
 import Block from '../../services/block.ts'
 import FormButton from '../../components/form-button/form-button.ts'
 import Link from '../../components/link/link.ts'
 import Form from '../../components/form/form.ts'
 import FormInput from '../../components/form-input/form-input.ts'
-
-const handleSubmit = (e: SubmitEvent, context: Block) => {
-  e.preventDefault()
-  console.log('login form: ', {
-    login: (context.children.login as FormInput).getValue(),
-    password: (context.children.password as FormInput).getValue()
-  })
-}
+import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
+import { validateForm } from '../../utils/validateForm.ts'
+import { loginFormFields } from '../../constants/constants.ts'
 
 type Props = PropsType
 
@@ -23,12 +18,12 @@ class LoginPageClass extends Block {
     super(props)
 
     this.children.login = new FormInput({
-      name: 'login',
+      name: FORM_FIELDS_NAMES.login,
       type: 'text',
       label: 'Логин'
     })
     this.children.password = new FormInput({
-      name: 'password',
+      name: FORM_FIELDS_NAMES.password,
       type: 'password',
       label: 'Пароль'
     })
@@ -49,7 +44,8 @@ class LoginPageClass extends Block {
           })
         ],
         events: {
-          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this)
+          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this),
+          blur: () => handleBlur(this)
         }
       })
     }
@@ -58,6 +54,33 @@ class LoginPageClass extends Block {
   render() {
     return this.compile(LoginPageTemplate, this.props)
   }
+}
+
+const getFieldsValues = (context: Block) => {
+  const values = {}
+  loginFormFields.forEach(field => {
+    Object.assign(values, {
+      [field.name]: (context.children[field.name] as FormInput).getValue()
+    })
+  })
+  return values
+}
+
+const validate = (context: Block) => {
+  const data = getFieldsValues(context)
+  const errors = validateForm(data as LoginFormDataType)
+  if (errors) {
+    console.error(errors)
+  }
+}
+const handleBlur = (context: Block) => {
+  console.log('blur: ')
+  validate(context)
+}
+const handleSubmit = (e: SubmitEvent, context: Block) => {
+  e.preventDefault()
+  console.log('submit: ')
+  validate(context)
 }
 
 export const LoginPage = new LoginPageClass({
