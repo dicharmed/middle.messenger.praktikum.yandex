@@ -38,12 +38,33 @@ export function validateForm(formData: FormDataType) {
     }
   }
 
-  // Проверка password
+  // Проверка password, oldPassword, newPassword, newPasswordControl, passwordCheck
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/
+  const passwordErrorMessage =
+    'Пароль должен содержать от 8 до 40 символов, хотя бы одну заглавную букву и цифру'
   if (FORM_FIELDS_NAMES.password in formData) {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/
     if (!passwordRegex.test(formData.password)) {
-      errors.password =
-        'Пароль должен содержать от 8 до 40 символов, хотя бы одну заглавную букву и цифру'
+      errors.password = passwordErrorMessage
+    }
+  }
+  if (FORM_FIELDS_NAMES.oldPassword in formData) {
+    if (!passwordRegex.test(formData.oldPassword)) {
+      errors.oldPassword = passwordErrorMessage
+    }
+  }
+  if (FORM_FIELDS_NAMES.newPassword in formData) {
+    if (!passwordRegex.test(formData.newPassword)) {
+      errors.newPassword = passwordErrorMessage
+    }
+  }
+  if (FORM_FIELDS_NAMES.newPasswordControl in formData) {
+    if (!passwordRegex.test(formData.newPasswordControl)) {
+      errors.newPasswordControl = passwordErrorMessage
+    }
+  }
+  if (FORM_FIELDS_NAMES.passwordCheck in formData) {
+    if (!passwordRegex.test(formData.passwordCheck)) {
+      errors.passwordCheck = passwordErrorMessage
     }
   }
 

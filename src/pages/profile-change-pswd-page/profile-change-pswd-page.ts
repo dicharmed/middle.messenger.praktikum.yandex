@@ -1,57 +1,66 @@
 import { default as ProfilePageChangePswdTemplate } from './profile-change-pswd-page.hbs?raw'
 import Block from '../../services/block.ts'
-import { PropsType } from '../../types/types.ts'
-import Avatar from '../../components/avatar/avatar.ts'
-import { profileFormEditPswdFields } from '../../constants/constants.ts'
+import { ProfileFormEditPswdDataType, PropsType } from '../../types/types.ts'
 import ProfileFormField from '../../components/profile/profile-form-field/profile-form-field.ts'
-import ButtonArrow from '../../components/button-arrow/button-arrow.ts'
-import FormButton from '../../components/form-button/form-button.ts'
 import '../profile-page/profile-page.css'
+import ProfileEditLayout from '../../components/profile/profile-edit-layout/profile-edit-layout.ts'
+import { ProfileFormEdit } from '../../components/profile/profile-form-edit/profile-form-edit.ts'
+import { profileFormEditPswdFields } from '../../constants/constants.ts'
+import { validateForm } from '../../utils/validateForm.ts'
 
 class ProfileChangePswdClass extends Block {
   constructor(props: PropsType) {
     super(props)
 
-    if (!this.children.avatar) {
-      this.children.avatar = new Avatar({})
-    }
-
-    if (!this.lists.editFieldsList) {
-      this.lists.editFieldsList = profileFormEditPswdFields.map(field => {
-        return new ProfileFormField({ field })
+    if (!this.children.profileEditLayout) {
+      this.children.profileEditLayout = new ProfileEditLayout({
+        content: new ProfileFormEdit(this.ProfileFormEditProps)
       })
-    }
-    if (!this.children.buttonForm) {
-      this.children.buttonForm = new FormButton({
-        title: 'Сохранить',
-        name: 'profile-change-pswd-form'
-      })
-    }
-    if (!this.children.buttonArrow) {
-      this.children.buttonArrow = new ButtonArrow({ direction: 'left' })
     }
   }
-
-  getValues = () => {
-    const values = {}
-    this.lists.editFieldsList.forEach(element => {
-      const el = (element as Block).children.input
-      const name = el.props.attributes!.name as string
-      const input = el as ProfileFormField
-
-      Object.assign(values, {
-        [name]: input.getValue()
-      })
-    })
-    return values
+  ProfileFormEditProps = {
+    content: profileFormEditPswdFields.map(field => {
+      return new ProfileFormField({ field })
+    }),
+    formButtonName: 'profile-form-pswd-change-btn',
+    events: {
+      submit: (e: unknown) => handleSubmit(e as SubmitEvent, this)
+    }
   }
 
   render() {
     return this.compile(ProfilePageChangePswdTemplate, this.props)
   }
 }
-export const ProfileChangePswdPage = new ProfileChangePswdClass({
-  attributes: { class: 'profile-page' }
-})
+export const ProfileChangePswdPage = new ProfileChangePswdClass({})
 
-console.log(ProfileChangePswdPage.getValues())
+const getValues = (context: Block) => {
+  const values = {}
+  const editFieldsList =
+    context.children.profileEditLayout.children.content.lists.content
+
+  editFieldsList.forEach(element => {
+    const el = (element as Block).children.input
+    const name = el.props.attributes!.name as string
+    const input = el as ProfileFormField
+
+    Object.assign(values, {
+      [name]: input.getValue()
+    })
+  })
+  console.log('values: ', values)
+  return values
+}
+
+const validate = (context: Block) => {
+  const data = getValues(context)
+  const errors = validateForm(data as ProfileFormEditPswdDataType)
+  if (errors) {
+    console.error(errors)
+  }
+}
+const handleSubmit = (e: SubmitEvent, context: Block) => {
+  e.preventDefault()
+  console.log('submit')
+  validate(context)
+}
