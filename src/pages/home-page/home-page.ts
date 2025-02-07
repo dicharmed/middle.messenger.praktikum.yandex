@@ -4,6 +4,11 @@ import { LinkType, PropsType } from '../../types/types.ts'
 import { navLinks } from '../../constants/constants.ts'
 import NavLink from '../../components/navLink/navLink.ts'
 import './home-page.css'
+import { registerTemplate } from '../../utils/register-template.ts'
+import { components } from '../../components'
+import Handlebars from 'handlebars'
+import { HELPERS } from '../../constants/enums.ts'
+import { compare } from '../../helpers/compare.ts'
 
 type Props = PropsType & { links: Array<LinkType> }
 class HomePageClass extends Block {
@@ -22,4 +27,7 @@ class HomePageClass extends Block {
   }
 }
 
-export default new HomePageClass({ links: navLinks })
+export const HomePage = new HomePageClass({ links: navLinks })
+
+registerTemplate(components)
+Handlebars.registerHelper(HELPERS.compare, compare)

@@ -20,23 +20,21 @@ export function registerRouter(config: Route[]): void {
   }
 
   function handleNavigate(e: MouseEvent) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    if (e.target && e.target.classList.contains('js-nav-link')) {
+    if (
+      e.target &&
+      e.target instanceof HTMLElement &&
+      e.target.classList.contains('js-nav-link')
+    ) {
       e.preventDefault()
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       const path = e.target.getAttribute('href')
-      goTo(path)
+      goTo(String(path))
     }
   }
 
   function handlePopState(e: PopStateEvent) {
     e.preventDefault()
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    goTo(e.target.location.pathname)
+    goTo(window.location.pathname)
   }
 
   document.addEventListener('click', handleNavigate)

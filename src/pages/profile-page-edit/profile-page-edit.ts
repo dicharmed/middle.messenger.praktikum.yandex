@@ -18,10 +18,6 @@ class ProfilePageEditClass extends Block {
         content: new ProfileFormEdit(this.ProfileFormEditProps)
       })
     }
-
-    // console.log(
-    //   (this.children.profileFormDetails as ProfileFormDetails).getValues()
-    // )
   }
 
   ProfileFormEditProps = {
