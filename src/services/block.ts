@@ -77,7 +77,7 @@ abstract class Block {
     const { events = {} } = this.props
 
     Object.keys(events).forEach(eventName => {
-      this._element!.addEventListener(eventName, events[eventName])
+      this._element!.addEventListener(eventName, events[eventName], true)
     })
   }
   private _removeEvents() {

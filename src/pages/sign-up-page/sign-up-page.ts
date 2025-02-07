@@ -38,7 +38,8 @@ class SignUpPageClass extends Block {
           })
         ],
         events: {
-          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this)
+          submit: (event: unknown) => handleSubmit(event as SubmitEvent, this),
+          blur: () => handleBlur(this)
         }
       })
     }
@@ -71,5 +72,8 @@ const validate = (context: Block) => {
 }
 const handleSubmit = (e: SubmitEvent, context: Block) => {
   e.preventDefault()
-  console.log('SignUp form: ', validate(context))
+  console.log('SignUp form submit: ', validate(context))
+}
+const handleBlur = (context: Block) => {
+  console.log('SignUp form blur: ', validate(context))
 }

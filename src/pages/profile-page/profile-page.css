@@ -17,3 +17,9 @@
 .profile-page-content-actions__item_red {
     color: var(--error-color);
 }
+
+.profile-page-content-actions {
+    display: flex;
+    flex-direction: column;
+}
+

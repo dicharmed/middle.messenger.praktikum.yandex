@@ -24,7 +24,8 @@ class ProfileChangePswdClass extends Block {
     }),
     formButtonName: 'profile-form-pswd-change-btn',
     events: {
-      submit: (e: unknown) => handleSubmit(e as SubmitEvent, this)
+      submit: (e: unknown) => handleSubmit(e as SubmitEvent, this),
+      blur: () => handleBlur(this)
     }
   }
 
@@ -62,5 +63,10 @@ const validate = (context: Block) => {
 const handleSubmit = (e: SubmitEvent, context: Block) => {
   e.preventDefault()
   console.log('submit')
+  validate(context)
+}
+
+const handleBlur = (context: Block) => {
+  console.log('blur')
   validate(context)
 }

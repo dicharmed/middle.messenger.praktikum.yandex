@@ -2,6 +2,8 @@ import Block from '../../../services/block.ts'
 import { PropsType } from '../../../types/types.ts'
 import FormButton from '../../form-button/form-button.ts'
 import { default as ProfileFormEditTemplate } from './profile-form-edit.hbs?raw'
+import './profile-form-edit.css'
+
 type Props = PropsType & {
   content: Array<Block>
   formButtonName: string
@@ -16,7 +18,6 @@ export class ProfileFormEdit extends Block {
         return component
       })
     }
-    console.log('this.lists.content', this.lists.content)
     if (!this.children.buttonForm) {
       this.children.buttonForm = new FormButton({
         name: formButtonName,

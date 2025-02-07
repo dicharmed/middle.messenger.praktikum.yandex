@@ -27,7 +27,8 @@ export default class ChatWindowFooter extends Block {
       this.children.buttonArrow = new ButtonArrow({
         direction: 'right',
         events: {
-          click: () => handleClick(this)
+          click: () => handleClick(this),
+          blur: () => handleBlur(this)
         }
       })
     }
@@ -47,6 +48,14 @@ const getMessage = (context: Block) => {
 }
 
 const handleClick = (context: Block) => {
+  const data = getMessage(context)
+  const errors = validateForm(data as ChatFormMessageDataType)
+  if (errors) {
+    console.error(errors)
+  }
+}
+
+const handleBlur = (context: Block) => {
   const data = getMessage(context)
   const errors = validateForm(data as ChatFormMessageDataType)
   if (errors) {
