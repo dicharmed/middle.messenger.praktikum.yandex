@@ -9,6 +9,8 @@ import Link from '../../components/link/link.ts'
 import { default as SignUpPageTemplate } from './sign-up-page.hbs?raw'
 import { signUpFormFields } from '../../constants/constants.ts'
 import { validateForm } from '../../utils/validateForm.ts'
+import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
+import setFormErrors from '../../utils/setFormErrors.ts'
 
 type Props = PropsType
 
@@ -39,7 +41,7 @@ class SignUpPageClass extends Block {
         ],
         events: {
           submit: (event: unknown) => handleSubmit(event as SubmitEvent, this),
-          blur: () => handleBlur(this)
+          blur: (event: unknown) => handleBlur(event as FocusEvent, this)
         }
       })
     }
@@ -65,15 +67,25 @@ const getFieldsValues = (context: Block) => {
 }
 const validate = (context: Block) => {
   const data = getFieldsValues(context)
-  const errors = validateForm(data as SignUpFormDataType)
-  if (errors) {
-    console.error(errors)
+  return validateForm(data as SignUpFormDataType)
+}
+
+const handleError = (event: Event, context: Block) => {
+  if (event.target instanceof HTMLInputElement) {
+    const name = event.target.name as FORM_FIELDS_NAMES
+    const value = event.target.value
+    const input = context.children.form.lists.content.find(
+      item => (item as FormInput).props.name === name
+    )
+
+    setFormErrors(name, value, input, validate, context)
   }
 }
+
 const handleSubmit = (e: SubmitEvent, context: Block) => {
   e.preventDefault()
-  console.log('SignUp form submit: ', validate(context))
+  handleError(e, context)
 }
-const handleBlur = (context: Block) => {
-  console.log('SignUp form blur: ', validate(context))
+const handleBlur = (e: FocusEvent, context: Block) => {
+  handleError(e, context)
 }

@@ -3,8 +3,16 @@
   grid-template-columns: 32px 1fr 28px;
   grid-column-gap: 10px;
   align-items: center;
-
-  /* padding-top: 11px; */
-
-  /* border-top: 1px solid var(--light-grey); */
 }
+
+.message_error {
+  grid-column: 1 / 4;
+  margin-left: 60%;
+  transform: translateX(-60%);
+  margin-top: 8px;
+  text-align: left;
+  color: var(--error-color);
+  font-size: 8px;
+  font-weight: 400;
+}
+

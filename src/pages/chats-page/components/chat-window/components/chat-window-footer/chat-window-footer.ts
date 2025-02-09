@@ -14,7 +14,12 @@ export default class ChatWindowFooter extends Block {
   constructor(props: PropsType) {
     super({
       ...props,
-      attributes: { class: 'chat-window-footer' }
+      attributes: { class: 'chat-window-footer' },
+      tagName: 'form',
+      events: {
+        submit: (e: unknown) => handleSubmit(e as SubmitEvent, this),
+        blur: () => handleBlur(this)
+      }
     })
 
     if (!this.children.inputMessage) {
@@ -25,11 +30,7 @@ export default class ChatWindowFooter extends Block {
     }
     if (!this.children.buttonArrow) {
       this.children.buttonArrow = new ButtonArrow({
-        direction: 'right',
-        events: {
-          click: () => handleClick(this),
-          blur: () => handleBlur(this)
-        }
+        direction: 'right'
       })
     }
   }
@@ -47,18 +48,21 @@ const getMessage = (context: Block) => {
   }
 }
 
-const handleClick = (context: Block) => {
-  const data = getMessage(context)
-  const errors = validateForm(data as ChatFormMessageDataType)
-  if (errors) {
-    console.error(errors)
-  }
+const handleSubmit = (event: SubmitEvent, context: Block) => {
+  event.preventDefault()
+  handleError(context)
 }
 
 const handleBlur = (context: Block) => {
+  handleError(context)
+}
+
+const validate = (context: Block) => {
   const data = getMessage(context)
-  const errors = validateForm(data as ChatFormMessageDataType)
-  if (errors) {
-    console.error(errors)
-  }
+  return validateForm(data as ChatFormMessageDataType)
+}
+
+const handleError = (context: Block) => {
+  validate(context)
+  context.setProps({ error: validate(context) })
 }

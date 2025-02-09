@@ -1,8 +1,12 @@
 import './input-message.css'
 import Block from '../../services/block.ts'
-import { FormElementType, PropsType } from '../../types/types.ts'
+import { ErrorType, FormElementType, PropsType } from '../../types/types.ts'
+import './input-message.css'
 
-type Props = PropsType & FormElementType
+type Props = PropsType &
+  FormElementType & {
+    error?: ErrorType
+  }
 export default class InputMessage extends Block {
   constructor(props: Props) {
     super({
