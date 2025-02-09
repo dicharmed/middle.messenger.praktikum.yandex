@@ -10,6 +10,7 @@ import FormInput from '../../components/form-input/form-input.ts'
 import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
 import { validateForm } from '../../utils/validateForm.ts'
 import { loginFormFields } from '../../constants/constants.ts'
+import setFormErrors from '../../utils/setFormErrors.ts'
 
 type Props = PropsType
 
@@ -45,7 +46,7 @@ class LoginPageClass extends Block {
         ],
         events: {
           submit: (event: unknown) => handleSubmit(event as SubmitEvent, this),
-          blur: () => handleBlur(this)
+          blur: (event: unknown) => handleBlur(event as FocusEvent, this)
         }
       })
     }
@@ -68,21 +69,26 @@ const getFieldsValues = (context: Block) => {
 
 const validate = (context: Block) => {
   const data = getFieldsValues(context)
-  const errors = validateForm(data as LoginFormDataType)
-  if (errors) {
-    console.error(errors)
+  return validateForm(data as LoginFormDataType)
+}
+const handleBlur = (event: FocusEvent, context: Block) => {
+  handleError(event as FocusEvent, context)
+}
+const handleSubmit = (event: SubmitEvent, context: Block) => {
+  event.preventDefault()
+  handleError(event as SubmitEvent, context)
+}
+const handleError = (event: Event, context: Block) => {
+  if (event.target instanceof HTMLInputElement) {
+    const name = event.target.name as FORM_FIELDS_NAMES
+    const value = event.target.value
+    const input = context.children.form.lists.content.find(
+      item => (item as FormInput).props.name === name
+    )
+
+    setFormErrors(name, value, input, validate, context)
   }
 }
-const handleBlur = (context: Block) => {
-  console.log('blur: ')
-  validate(context)
-}
-const handleSubmit = (e: SubmitEvent, context: Block) => {
-  e.preventDefault()
-  console.log('submit: ')
-  validate(context)
-}
-
 export const LoginPage = new LoginPageClass({
   attributes: { class: 'login-page' }
 })

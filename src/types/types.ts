@@ -45,7 +45,7 @@ export type FormElementType = {
   label?: string
 }
 export type ErrorType = {
-  message: string
+  message?: string
   status?: string
   userMessage?: string
 }
