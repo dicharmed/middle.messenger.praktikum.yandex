@@ -1,7 +1,4 @@
 .profile-form-field {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid var(--light-grey);
 }
@@ -11,5 +8,13 @@
   font-weight: 400;
   text-wrap-mode: nowrap;
   color: var(--text-primary-color);
+}
+
+.profile-form-field__error {
+  margin-top: 8px;
+  text-align: right;
+  color: var(--error-color);
+  font-size: 8px;
+  font-weight: 400;
 }
 

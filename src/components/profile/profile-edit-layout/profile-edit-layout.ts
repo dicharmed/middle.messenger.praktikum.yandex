@@ -4,9 +4,11 @@ import { PropsType } from '../../../types/types.ts'
 import Avatar from '../../avatar/avatar.ts'
 import ButtonArrow from '../../button-arrow/button-arrow.ts'
 import './profile-edit-layout.css'
+import FormButton from '../../form-button/form-button.ts'
 
 type Props = PropsType & {
   content: Array<Block> | Block
+  formButtonName: string
 }
 export default class ProfileEditLayout extends Block {
   constructor(props: Props) {
@@ -31,6 +33,13 @@ export default class ProfileEditLayout extends Block {
       if (!this.children.content) {
         this.children.content = content
       }
+    }
+
+    if (!this.children.buttonForm) {
+      this.children.buttonForm = new FormButton({
+        name: this.props.formButtonName as string,
+        title: 'Сохранить'
+      })
     }
   }
 

@@ -1,11 +1,12 @@
 import './profile-form-field.css'
 import { default as ProfileFormFieldTemplate } from './profile-form-field.hbs?raw'
 import Block from '../../../services/block.ts'
-import { FormElementType, PropsType } from '../../../types/types.ts'
+import { ErrorType, FormElementType, PropsType } from '../../../types/types.ts'
 import ProfileEditInput from '../profile-edit-input/profile-edit-input.ts'
 
 type Props = PropsType & {
   field: FormElementType
+  error?: ErrorType
 }
 export default class ProfileFormField extends Block {
   constructor(props: Props) {

@@ -4,10 +4,11 @@ import { ProfileFormEditPswdDataType, PropsType } from '../../types/types.ts'
 import '../profile-page/profile-page.css'
 
 import ProfileEditLayout from '../../components/profile/profile-edit-layout/profile-edit-layout.ts'
-import { ProfileFormEdit } from '../../components/profile/profile-form-edit/profile-form-edit.ts'
 import { profileFormFields } from '../../constants/constants.ts'
 import ProfileFormField from '../../components/profile/profile-form-field/profile-form-field.ts'
 import { validateForm } from '../../utils/validateForm.ts'
+import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
+import ProfileEditInput from '../../components/profile/profile-edit-input/profile-edit-input.ts'
 
 class ProfilePageEditClass extends Block {
   constructor(props: PropsType) {
@@ -15,19 +16,15 @@ class ProfilePageEditClass extends Block {
 
     if (!this.children.profileEditLayout) {
       this.children.profileEditLayout = new ProfileEditLayout({
-        content: new ProfileFormEdit(this.ProfileFormEditProps)
+        content: profileFormFields.map(field => {
+          return new ProfileFormField({ field })
+        }),
+        formButtonName: 'profile-page-edit-btn',
+        events: {
+          submit: (e: unknown) => handleSubmit(e as SubmitEvent, this),
+          blur: (e: unknown) => handleBlur(e as FocusEvent, this)
+        }
       })
-    }
-  }
-
-  ProfileFormEditProps = {
-    content: profileFormFields.map(field => {
-      return new ProfileFormField({ field })
-    }),
-    formButtonName: 'profile-page-edit-btn',
-    events: {
-      submit: (e: unknown) => handleSubmit(e as SubmitEvent, this),
-      blur: () => handleBlur(this)
     }
   }
 
@@ -40,9 +37,7 @@ export const ProfilePageEdit = new ProfilePageEditClass({})
 
 const getValues = (context: Block) => {
   const values = {}
-  const editFieldsList =
-    context.children.profileEditLayout.children.content.lists.content
-
+  const editFieldsList = context.children.profileEditLayout.lists.content
   editFieldsList.forEach(element => {
     const el = (element as Block).children.input
     const name = el.props.attributes!.name as string
@@ -52,24 +47,36 @@ const getValues = (context: Block) => {
       [name]: input.getValue()
     })
   })
-  console.log('values: ', values)
   return values
 }
 
 const validate = (context: Block) => {
   const data = getValues(context)
-  const errors = validateForm(data as ProfileFormEditPswdDataType)
-  if (errors) {
-    console.error(errors)
+  return validateForm(data as ProfileFormEditPswdDataType)
+}
+const handleError = (event: Event, context: Block) => {
+  if (event.target instanceof HTMLInputElement) {
+    const name = event.target.name as FORM_FIELDS_NAMES
+
+    const field = context.children.profileEditLayout.lists.content.find(
+      item => {
+        return (
+          (item as ProfileEditInput).children.input.props.attributes!.name ===
+          name
+        )
+      }
+    ) as ProfileFormField
+
+    field.setProps({
+      error: { message: validate(context)![name] }
+    })
   }
 }
-const handleSubmit = (e: SubmitEvent, context: Block) => {
-  e.preventDefault()
-  console.log('submit')
-  validate(context)
+const handleSubmit = (event: SubmitEvent, context: Block) => {
+  event.preventDefault()
+  handleError(event, context)
 }
 
-const handleBlur = (context: Block) => {
-  console.log('blur')
-  validate(context)
+const handleBlur = (event: FocusEvent, context: Block) => {
+  handleError(event, context)
 }
