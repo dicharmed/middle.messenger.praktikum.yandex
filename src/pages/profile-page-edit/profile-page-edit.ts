@@ -6,7 +6,7 @@ import '../profile-page/profile-page.css'
 import ProfileEditLayout from '../../components/profile/profile-edit-layout/profile-edit-layout.ts'
 import { profileFormFields } from '../../constants/constants.ts'
 import ProfileFormField from '../../components/profile/profile-form-field/profile-form-field.ts'
-import { validateForm } from '../../utils/validateForm.ts'
+import { validateForm } from '../../utils/validate-form.ts'
 import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
 import ProfileEditInput from '../../components/profile/profile-edit-input/profile-edit-input.ts'
 

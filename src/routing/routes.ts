@@ -4,30 +4,26 @@ import { Route } from '../types/route.ts'
 export const routes: Array<Route> = [
   {
     path: '/',
-    component: pages.HomePage
+    component: pages.LoginPage
   },
   {
     path: '/sign-up',
     component: pages.SignUpPage
   },
   {
-    path: '/login',
-    component: pages.LoginPage
-  },
-  {
-    path: '/chats',
+    path: '/messenger',
     component: pages.ChatsPage
   },
   {
-    path: '/profile',
+    path: '/settings',
     component: pages.ProfilePage
   },
   {
-    path: '/profile/edit',
+    path: '/settings/edit',
     component: pages.ProfilePageEdit
   },
   {
-    path: '/profile/change-password',
+    path: '/settings/change-password',
     component: pages.ProfileChangePswdPage
   },
   {

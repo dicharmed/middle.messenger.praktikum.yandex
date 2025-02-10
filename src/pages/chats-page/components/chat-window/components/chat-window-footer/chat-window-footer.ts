@@ -8,7 +8,7 @@ import {
 import InputMessage from '../../../../../../components/input-message/input-message.ts'
 import ButtonArrow from '../../../../../../components/button-arrow/button-arrow.ts'
 import { FORM_FIELDS_NAMES } from '../../../../../../constants/enums.ts'
-import { validateForm } from '../../../../../../utils/validateForm.ts'
+import { validateForm } from '../../../../../../utils/validate-form.ts'
 
 export default class ChatWindowFooter extends Block {
   constructor(props: PropsType) {

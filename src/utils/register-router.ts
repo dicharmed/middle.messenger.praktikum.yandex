@@ -7,12 +7,12 @@ export function registerRouter(config: Route[]): void {
 
     if (page) {
       window.history.pushState(null, '', page.path)
-      render(page.component)
+      render('app', page.component)
     } else {
       const errorPage = config.find(page => page.path === '*')
 
       if (errorPage) {
-        render(errorPage.component)
+        render('app', errorPage.component)
       } else {
         alert('Упс! Мы сломались:(')
       }

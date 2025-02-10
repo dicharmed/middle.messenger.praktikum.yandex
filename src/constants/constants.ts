@@ -2,13 +2,16 @@ import { FormElementType, LinkType } from '../types/types.ts'
 import { FORM_FIELDS_NAMES, NAV_LINKS } from './enums.ts'
 
 export const navLinks: Array<LinkType> = [
-  { title: NAV_LINKS.home, href: '/' },
-  { title: NAV_LINKS.login, href: '/login' },
-  { title: NAV_LINKS.signUp, href: '/sign-up' },
-  { title: NAV_LINKS.chats, href: '/chats' },
-  { title: NAV_LINKS.profile, href: '/profile' },
-  { title: NAV_LINKS.profileEdit, href: '/profile/edit' },
-  { title: NAV_LINKS.profilePasswordChange, href: '/profile/change-password' }
+  { title: NAV_LINKS.home, pathName: '/' },
+  { title: NAV_LINKS.login, pathName: '/login' },
+  { title: NAV_LINKS.signUp, pathName: '/sign-up' },
+  { title: NAV_LINKS.chats, pathName: '/chats' },
+  { title: NAV_LINKS.profile, pathName: '/profile' },
+  { title: NAV_LINKS.profileEdit, pathName: '/profile/edit' },
+  {
+    title: NAV_LINKS.profilePasswordChange,
+    pathName: '/profile/change-password'
+  }
 ]
 export const loginFormFields: Array<FormElementType> = [
   { name: FORM_FIELDS_NAMES.login, type: 'text', label: 'Логин' },

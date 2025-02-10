@@ -36,7 +36,7 @@ export type ChatPreviewType = {
   amount?: number
   active?: boolean
 }
-export type LinkType = { href: string; title: string }
+export type LinkType = { pathName: string; title: string }
 export type FormElementType = {
   name: string
   type?: string

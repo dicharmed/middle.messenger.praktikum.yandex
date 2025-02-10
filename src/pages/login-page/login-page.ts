@@ -7,10 +7,14 @@ import FormButton from '../../components/form-button/form-button.ts'
 import Link from '../../components/link/link.ts'
 import Form from '../../components/form/form.ts'
 import FormInput from '../../components/form-input/form-input.ts'
-import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
-import { validateForm } from '../../utils/validateForm.ts'
+import { FORM_FIELDS_NAMES, HELPERS } from '../../constants/enums.ts'
+import { validateForm } from '../../utils/validate-form.ts'
 import { loginFormFields } from '../../constants/constants.ts'
-import setFormErrors from '../../utils/setFormErrors.ts'
+import setFormErrors from '../../utils/set-form-errors.ts'
+import { registerTemplate } from '../../utils/register-template.ts'
+import { components } from '../../components'
+import Handlebars from 'handlebars'
+import { compare } from '../../helpers/compare.ts'
 
 type Props = PropsType
 
@@ -41,7 +45,7 @@ class LoginPageClass extends Block {
           }),
           new Link({
             title: 'Нет аккаунта?',
-            href: `/chats`
+            pathName: `/chats`
           })
         ],
         events: {
@@ -92,3 +96,6 @@ const handleError = (event: Event, context: Block) => {
 export const LoginPage = new LoginPageClass({
   attributes: { class: 'login-page' }
 })
+
+registerTemplate(components)
+Handlebars.registerHelper(HELPERS.compare, compare)

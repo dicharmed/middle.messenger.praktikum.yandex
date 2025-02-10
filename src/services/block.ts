@@ -6,9 +6,9 @@ import {
   TagNameType
 } from '../types/types.ts'
 import { v4 as makeUUID } from 'uuid'
-import { templateCompile } from '../utils/template-compile.ts'
 import Handlebars from 'handlebars'
 import { EVENTS as EventsEnum } from '../constants/enums.ts'
+import { templateCompile } from '../utils/template-compile.ts'
 
 interface BlockEvents {
   [key: string]: (...args: unknown[]) => void
@@ -250,6 +250,14 @@ abstract class Block {
     if (withInternalID && this._id) element.setAttribute('data-id', this._id)
 
     return element
+  }
+
+  show() {
+    this.getContent()!.style.display = 'block'
+  }
+
+  hide() {
+    this.getContent()!.style.display = 'none'
   }
 }
 

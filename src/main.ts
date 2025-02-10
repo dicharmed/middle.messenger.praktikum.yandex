@@ -1,5 +1,9 @@
 import './style.css'
-import { registerRouter } from './utils/register-router.ts'
-import { routes } from './config/routes.ts'
+import { routes } from './routing/routes.ts'
+import { router } from './routing/router.ts'
 
-registerRouter(routes)
+routes.forEach(route => {
+  router.use(route.path, route.component)
+})
+
+router.start()
