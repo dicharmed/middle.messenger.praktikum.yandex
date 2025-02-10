@@ -1,21 +1,19 @@
-import globals from 'globals'
 import js from '@eslint/js'
+import globals from 'globals'
+import tsEslint from 'typescript-eslint'
 import prettierRecommended from 'eslint-plugin-prettier/recommended'
 import prettierConfig from './prettier.config.js'
 
-export default [
+export default tsEslint.config(
+  { ignores: ['dist'] },
   {
-    files: ['**/*.js', '**/*.jsx']
-  },
-  {
+    extends: [js.configs.recommended, ...tsEslint.configs.recommended],
+    files: ['**/*.{js,ts}'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node
-      }
+      ecmaVersion: 2020,
+      globals: globals.browser
     }
   },
-  js.configs.recommended,
   prettierRecommended,
   {
     rules: {
@@ -23,4 +21,4 @@ export default [
       'prettier/prettier': ['warn', prettierConfig]
     }
   }
-]
+)

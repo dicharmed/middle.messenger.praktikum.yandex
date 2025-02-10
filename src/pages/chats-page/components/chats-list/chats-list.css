@@ -1,11 +1,28 @@
 .chats {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1px;
 }
-.chats__item .chat {
-    border-top: 1px solid var(--light-grey);
+
+.chats .chats__item {
+  border-top: 1px solid var(--light-grey);
+  z-index: 1;
 }
+
 .chats__item:last-child {
-    border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
 }
+
+.chats__item:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 107%;
+  height: 96%;
+  transform: translate(-50%, -50%);
+  background: var(--light-blue);
+  z-index: -1;
+}
+
+

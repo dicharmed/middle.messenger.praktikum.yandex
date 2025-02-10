@@ -1,9 +1,9 @@
-<div class="avatar {{#if s}}avatar_s{{else if m}}avatar_m{{/if}}">
-  {{#if url}}
+{{#if url}}
     <img class="avatar__img" src={{url}} alt="avatar"/>
   {{else}}
-    <img class="avatar__no-avatar {{#if s}}avatar__no-avatar_s{{else if m}}avatar__no-avatar_m{{/if}}" src="/assets/no-avatar.svg" alt="avatar"/>
-  {{/if}}
-</div>
+    <img class="avatar__no-avatar {{#compare size "===" "small" }}avatar__no-avatar_s{{/compare}}{{#compare size "===" "medium"}}avatar__no-avatar_m{{/compare}}" src="/assets/no-avatar.svg" alt="avatar"/>
+{{/if}}
+
+
 
 

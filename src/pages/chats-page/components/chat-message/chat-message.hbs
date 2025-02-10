@@ -1,16 +1,15 @@
-<div class='chat-message {{#if outcoming}}chat-message_outcoming{{else}}chat-message_incoming{{/if}}'>
-  <div class='chat-message__text'>{{message}}</div>
+<div class='chat-message__text'>{{message.text}}</div>
   <div class='chat-message-info'>
-    {{#if status}}
+    {{#compare message.status "===" "seen"}}
       <img
         class='chat-message__status'
         src='/assets/msg-status-seen.svg'
         alt='status'
       />
-    {{/if}}
-    <div class='chat-message__time {{#if outcoming}}chat-message__time_outcoming{{else}}chat-message__time_incoming{{/if}}'>{{time}}</div>
-  </div>
+    {{/compare}}
+    <div class='chat-message__time {{#compare message.type "===" "outcoming" }}chat-message__time_outcoming{{else}}chat-message__time_incoming{{/compare}}'>{{message.time}}</div>
 </div>
+
 
 
 

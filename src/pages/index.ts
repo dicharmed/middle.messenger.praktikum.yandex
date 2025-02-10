@@ -1,0 +1,8 @@
+export { HomePage } from './home-page/home-page.ts'
+export { SignUpPage } from './sign-up-page/sign-up-page.ts'
+export { LoginPage } from './login-page/login-page.ts'
+export { ErrorPage } from './error-page/error-page.ts'
+export { ChatsPage } from './chats-page/chats-page.ts'
+export { ProfilePage } from './profile-page/profile-page.ts'
+export { ProfilePageEdit } from './profile-page-edit/profile-page-edit.ts'
+export { ProfileChangePswdPage } from './profile-change-pswd-page/profile-change-pswd-page.ts'

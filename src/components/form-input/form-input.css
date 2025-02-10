@@ -1,37 +1,44 @@
-.input{
-    height: 40px;
-    width: 100%;
-    position: relative;
-    border-bottom: 1px solid var(--primary-color);
-    background: #fff;
-    box-sizing: border-box;
+.input {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid var(--primary-color);
+  background: #fff;
+  box-sizing: border-box;
 }
-.input__value{
-    height: 100%;
-    width: 100%;
-    border: none;
-    font-size: 13px;
 
-    &:focus ~ label,
-    &:valid ~ label{
-        transform: translateY(-25px);
-        font-size: 9px;
-    }
+.input_with-error {
+  margin-bottom: 20px;
 }
-.input__label{
-    position: absolute;
-    bottom: 5px;
-    left: 2px;
-    color: var(--text-secondary-color);
-    font-size: 13px;
-    pointer-events: none;
-    transition: all 0.3s ease;
+
+.input__value {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 13px;
+
+  &:focus ~ label,
+  &:valid ~ label {
+    transform: translateY(-25px);
+    font-size: 9px;
+  }
 }
+
+.input__label {
+  position: absolute;
+  bottom: 5px;
+  left: 2px;
+  color: var(--text-secondary-color);
+  font-size: 13px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
 .input__message {
-    margin-top: 8px;
-    margin-left: 2px;
-    text-align: left;
-    color: var(--error-color);
-    font-size: 8px;
-    font-weight: 400;
+  margin-top: 8px;
+  margin-left: 2px;
+  text-align: left;
+  color: var(--error-color);
+  font-size: 8px;
+  font-weight: 400;
 }

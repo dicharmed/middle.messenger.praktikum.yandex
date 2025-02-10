@@ -1,3 +1,19 @@
-{{#> ProfilePageLayout}}
-  {{> ProfilePageContent}}
-{{/ProfilePageLayout}}
+<div class="profile-page-back-to">
+  {{buttonArrow}}
+</div>
+<div class="profile-page-content">
+  <div class="profile-page-content-header">
+    {{avatar}}
+    <h2 class="profile-page-content-header__name">Иван</h2>
+  </div>
+
+  {{profileFormDetails}}
+
+  <div class="profile-page-content-actions">
+    <a href="#" class="profile-page-content-actions__item">Изменить данные</a>
+    <a href="#" class="profile-page-content-actions__item">Изменить пароль</a>
+    <a href="#" class="profile-page-content-actions__item profile-page-content-actions__item_red">Выйти</a>
+  </div>
+</div>
+
+

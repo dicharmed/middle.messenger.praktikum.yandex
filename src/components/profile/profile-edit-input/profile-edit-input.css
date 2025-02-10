@@ -1,0 +1,9 @@
+.input-form-edit {
+    width: 100%;
+    color: var(--text-secondary-color);
+    text-align: right;
+    background: none;
+    font-size: 13px;
+    font-weight: 400;
+    text-wrap-mode: nowrap;
+}

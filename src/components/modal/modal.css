@@ -1,18 +1,20 @@
 .modal {
-    position: fixed;
-    width: 340px;
-    height: 256px;
-    padding: 40px 30px;
-    background: white;
-    text-align: center;
-    filter: var(--form-shadow);
-    border-radius: var(--form-border-radius);
+  position: fixed;
+  width: 340px;
+  height: 256px;
+  padding: 40px 30px;
+  background: white;
+  text-align: center;
+  filter: var(--form-shadow);
+  border-radius: var(--form-border-radius);
 }
+
 .modal-content__title {
-    margin-bottom: 50px;
-    font-size: 15px;
+  margin-bottom: 50px;
+  font-size: 15px;
 }
-.modal-content input[type="submit"] {
-    width: 280px;
-    margin-top: 30px;
+
+.modal-content input[type='submit'] {
+  width: 280px;
+  margin-top: 30px;
 }

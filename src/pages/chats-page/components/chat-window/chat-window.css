@@ -1,15 +1,17 @@
 .chat-window__header {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
+
 .chat-window__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 30px 0;
-    border-top: 1px solid var(--light-grey);
-    border-bottom: 1px solid var(--light-grey);
-    height: calc(100vh - 34px - 32px - 21px - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px 0;
+  border-top: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
+  height: calc(100vh - 34px - 32px - 21px - 20px);
 }
+
 .chat-window__footer {
-    margin-top: 10px;
+  margin-top: 10px;
 }
