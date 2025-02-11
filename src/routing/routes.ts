@@ -1,33 +1,38 @@
 import * as pages from '../pages'
-import { Route } from '../types/route.ts'
+import { ROUTES } from '../constants/enums.ts'
+import { RouteType } from '../types/types.ts'
 
-export const routes: Array<Route> = [
+export const routes: Array<RouteType> = [
   {
-    path: '/',
+    path: ROUTES.LOGIN,
     component: pages.LoginPage
   },
   {
-    path: '/sign-up',
+    path: ROUTES.SIGNUP,
     component: pages.SignUpPage
   },
   {
-    path: '/messenger',
+    path: ROUTES.CHATS,
     component: pages.ChatsPage
   },
   {
-    path: '/settings',
+    path: ROUTES.PROFILE,
     component: pages.ProfilePage
   },
   {
-    path: '/settings/edit',
+    path: ROUTES.PROFILE_EDIT,
     component: pages.ProfilePageEdit
   },
   {
-    path: '/settings/change-password',
+    path: ROUTES.PROFILE_EDIT_PASSWORD,
     component: pages.ProfileChangePswdPage
   },
   {
-    path: '*',
-    component: pages.ErrorPage
+    path: ROUTES.INTERNAL_SERVER,
+    component: pages.ErrorPage500
+  },
+  {
+    path: ROUTES.NOT_FOUND,
+    component: pages.ErrorPage404
   }
 ]

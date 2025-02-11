@@ -14,7 +14,10 @@ export type PropsType = Record<string, unknown> & {
 export type ListsType = Record<string, Array<Block | unknown>>
 export type ChildrenType = Record<string, Block>
 export type ClassNamesType = Array<string> | string
-export type HtmlElementAttrsType = Record<string, string | Array<string>> & {
+export type HtmlElementAttrsType = Record<
+  string,
+  string | Array<string> | boolean
+> & {
   class?: ClassNamesType
 }
 export type ButtonType = {
@@ -43,6 +46,7 @@ export type FormElementType = {
   value?: string
   placeholder?: string
   label?: string
+  disabled?: boolean
 }
 export type ErrorType = {
   message?: string
@@ -92,3 +96,8 @@ export type FormDataType =
   | ProfileFormDataType
   | ProfileFormEditPswdDataType
   | ChatFormMessageDataType
+
+export type RouteType = {
+  path: string
+  component: Block
+}

@@ -5,6 +5,7 @@ import Avatar from '../../avatar/avatar.ts'
 import ButtonArrow from '../../button-arrow/button-arrow.ts'
 import './profile-edit-layout.css'
 import FormButton from '../../form-button/form-button.ts'
+import { router } from '../../../services/router.ts'
 
 type Props = PropsType & {
   content: Array<Block> | Block
@@ -20,7 +21,15 @@ export default class ProfileEditLayout extends Block {
     }
 
     if (!this.children.buttonArrow) {
-      this.children.buttonArrow = new ButtonArrow({ direction: 'left' })
+      this.children.buttonArrow = new ButtonArrow({
+        direction: 'left',
+        events: {
+          click: (e: unknown) => {
+            ;(e as MouseEvent).preventDefault()
+            router.back()
+          }
+        }
+      })
     }
 
     if (content instanceof Array) {

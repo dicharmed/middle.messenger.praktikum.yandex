@@ -1,4 +1,4 @@
-import Block from '../services/block.ts'
+import Block from './block.ts'
 import { render } from '../utils/render.ts'
 
 export class Route {
@@ -23,7 +23,7 @@ export class Route {
 
   leave() {
     if (this._block) {
-      this._block.hide()
+      this._block = null
     }
   }
 
@@ -32,13 +32,8 @@ export class Route {
   }
 
   render() {
-    if (!this._block) {
-      this._block = this._blockClass
-      render(this._props.rootQuery, this._block)
-      return
-    }
-
-    this._block.show()
+    this._block = this._blockClass
+    render(this._props.rootQuery, this._block)
   }
 }
 

@@ -22,4 +22,5 @@
 .error-page__link {
   font-size: 11px;
   color: var(--primary-color);
+  cursor: pointer;
 }

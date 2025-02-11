@@ -244,20 +244,10 @@ abstract class Block {
     tagName: TagNameType = 'div',
     withInternalID?: boolean
   ) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName)
-    // if (className) element.setAttribute('class', className)
     if (withInternalID && this._id) element.setAttribute('data-id', this._id)
 
     return element
-  }
-
-  show() {
-    this.getContent()!.style.display = 'block'
-  }
-
-  hide() {
-    this.getContent()!.style.display = 'none'
   }
 }
 

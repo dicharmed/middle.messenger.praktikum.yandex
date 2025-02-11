@@ -7,7 +7,7 @@ import FormButton from '../../components/form-button/form-button.ts'
 import Link from '../../components/link/link.ts'
 import Form from '../../components/form/form.ts'
 import FormInput from '../../components/form-input/form-input.ts'
-import { FORM_FIELDS_NAMES, HELPERS } from '../../constants/enums.ts'
+import { FORM_FIELDS_NAMES, HELPERS, ROUTES } from '../../constants/enums.ts'
 import { validateForm } from '../../utils/validate-form.ts'
 import { loginFormFields } from '../../constants/constants.ts'
 import setFormErrors from '../../utils/set-form-errors.ts'
@@ -15,6 +15,7 @@ import { registerTemplate } from '../../utils/register-template.ts'
 import { components } from '../../components'
 import Handlebars from 'handlebars'
 import { compare } from '../../helpers/compare.ts'
+import { router } from '../../services/router.ts'
 
 type Props = PropsType
 
@@ -45,7 +46,7 @@ class LoginPageClass extends Block {
           }),
           new Link({
             title: 'Нет аккаунта?',
-            pathName: `/chats`
+            pathName: ROUTES.SIGNUP
           })
         ],
         events: {
@@ -81,6 +82,8 @@ const handleBlur = (event: FocusEvent, context: Block) => {
 const handleSubmit = (event: SubmitEvent, context: Block) => {
   event.preventDefault()
   handleError(event as SubmitEvent, context)
+
+  router.go(ROUTES.CHATS)
 }
 const handleError = (event: Event, context: Block) => {
   if (event.target instanceof HTMLInputElement) {
@@ -89,7 +92,6 @@ const handleError = (event: Event, context: Block) => {
     const input = context.children.form.lists.content.find(
       item => (item as FormInput).props.name === name
     )
-
     setFormErrors(name, value, input, validate, context)
   }
 }

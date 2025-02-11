@@ -9,7 +9,7 @@ import Link from '../../components/link/link.ts'
 import { default as SignUpPageTemplate } from './sign-up-page.hbs?raw'
 import { signUpFormFields } from '../../constants/constants.ts'
 import { validateForm } from '../../utils/validate-form.ts'
-import { FORM_FIELDS_NAMES } from '../../constants/enums.ts'
+import { FORM_FIELDS_NAMES, ROUTES } from '../../constants/enums.ts'
 import setFormErrors from '../../utils/set-form-errors.ts'
 
 type Props = PropsType
@@ -36,7 +36,7 @@ class SignUpPageClass extends Block {
           }),
           new Link({
             title: 'Войти',
-            pathName: `/login`
+            pathName: ROUTES.LOGIN
           })
         ],
         events: {

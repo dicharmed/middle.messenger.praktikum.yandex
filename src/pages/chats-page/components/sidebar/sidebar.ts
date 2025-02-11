@@ -4,6 +4,8 @@ import Block from '../../../../services/block.ts'
 import { ChatPreviewType, PropsType } from '../../../../types/types.ts'
 import SearchField from '../search-field/search-field.ts'
 import ChatsList from '../chats-list/chats-list.ts'
+import Link from '../../../../components/link/link.ts'
+import { ROUTES } from '../../../../constants/enums.ts'
 
 const chats: Array<ChatPreviewType> = [
   {
@@ -37,6 +39,14 @@ export default class Sidebar extends Block {
       ...props,
       attributes: { class: 'sidebar' }
     })
+
+    if (!this.children.link) {
+      this.children.link = new Link({
+        title: 'Профиль',
+        pathName: ROUTES.PROFILE,
+        attributes: { class: 'sidebar__link' }
+      })
+    }
 
     if (!this.children.searchField) {
       this.children.searchField = new SearchField({})

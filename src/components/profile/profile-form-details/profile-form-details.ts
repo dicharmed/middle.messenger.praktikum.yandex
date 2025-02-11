@@ -1,17 +1,21 @@
 import { default as ProfileFormDetailsTemplate } from './profile-form-details.hbs?raw'
-import { PropsType } from '../../../types/types.ts'
+import { FormElementType, PropsType } from '../../../types/types.ts'
 import Block from '../../../services/block.ts'
 import { profileFormFields } from '../../../constants/constants.ts'
 import ProfileFormField from '../profile-form-field/profile-form-field.ts'
 import ProfileEditInput from '../profile-edit-input/profile-edit-input.ts'
 
+type Props = Partial<PropsType & FormElementType>
+
 export default class ProfileFormDetails extends Block {
-  constructor(props: PropsType) {
+  constructor(props: Props) {
     super(props)
 
     if (!this.lists.detailsList) {
       this.lists.detailsList = profileFormFields.map(field => {
-        return new ProfileFormField({ field })
+        return new ProfileFormField({
+          field: { ...field, disabled: props.disabled }
+        })
       })
     }
   }

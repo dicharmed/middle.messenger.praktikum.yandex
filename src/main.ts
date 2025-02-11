@@ -1,9 +1,8 @@
 import './style.css'
 import { routes } from './routing/routes.ts'
-import { router } from './routing/router.ts'
+import { router } from './services/router.ts'
 
-routes.forEach(route => {
+routes.map(route => {
   router.use(route.path, route.component)
 })
-
 router.start()

@@ -1,5 +1,6 @@
+import Block from './block.ts'
 import { Route } from './route.ts'
-import Block from '../services/block.ts'
+import { ROUTES } from '../constants/enums.ts'
 
 export class Router {
   routes: Array<Route> = []
@@ -22,24 +23,20 @@ export class Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
     this.routes.push(route)
-
     return this
   }
 
   start() {
-    window.onpopstate = ((event: PopStateEvent) => {
-      const target = event.currentTarget! as Window
-      this._onRoute(target.location.pathname)
-    }).bind(this)
+    window.onpopstate = (event: PopStateEvent) => {
+      event.preventDefault()
+      this._onRoute((event.currentTarget as Window)?.location.pathname)
+    }
 
     this._onRoute(window.location.pathname)
   }
 
   _onRoute(pathname: string) {
-    let route = this.getRoute(pathname)
-    if (!route) {
-      route = this.getRoute('*')
-    }
+    const route = this.getRoute(pathname) || this.getRoute(ROUTES.NOT_FOUND)
 
     if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave()

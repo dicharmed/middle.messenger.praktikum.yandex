@@ -35,3 +35,13 @@ export enum FORM_FIELDS_NAMES {
   newPasswordControl = 'newPasswordControl',
   message = 'message'
 }
+export enum ROUTES {
+  LOGIN = '/',
+  SIGNUP = '/sign-up',
+  CHATS = '/messenger',
+  PROFILE = '/settings',
+  PROFILE_EDIT = '/settings/edit',
+  PROFILE_EDIT_PASSWORD = '/settings/edit-password',
+  INTERNAL_SERVER = '/500',
+  NOT_FOUND = '*'
+}
